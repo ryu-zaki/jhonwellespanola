@@ -1,0 +1,37 @@
+*, *::before, *::after {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-weight: 600;   
+}
+
+.poppins-bold {
+    font-weight: 700;   
+}
+
+.shadow-light {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.navbar_animate {
+  transform: translateY(-100%);
+  animation: navBarAnim .6s forwards;
+}
+
+@keyframes navBarAnim {
+    to {
+        transform: translateY(0);
+    }
+    
+}
+
+@media (min-width: 64rem) {
+    .navbtn,
+    .navbtn.poppins-semibold {
+        font-weight: 470;
+    }
+}
+

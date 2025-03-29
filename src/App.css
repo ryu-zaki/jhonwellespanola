@@ -21,9 +21,16 @@
   animation: navBarAnim .6s forwards;
 }
 
+.navbar_animate.additionalNav {
+    animation-delay: .2s;
+}
+
+
+
 @keyframes navBarAnim {
     to {
         transform: translateY(0);
+        opacity: 1;
     }
     
 }

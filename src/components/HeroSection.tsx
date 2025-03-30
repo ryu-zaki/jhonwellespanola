@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react'
 
 import messenger from '../assets/Hero/messenger.png';
 import document from '../assets/Hero/document.png';
@@ -71,7 +70,7 @@ const ServiceBox = ({data}: { data: { imgSrc: string; category: string} }) => {
               
               {
                 splitWord.map((word, index) => {
-                  return index === splitWord.length - 1 ? <><br/>{word}</> : <>{word} </>
+                  return index === splitWord.length - 1 ? <span key={index}><br/>{word}</span> : <span key={index}>{word}</span>
                 })
               }
             </h3>

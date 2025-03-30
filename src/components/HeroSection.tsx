@@ -13,7 +13,7 @@ import services from '../static data/Services';
 function HeroSection() {
 
   return (
-    <div className='mt-10 flex flex-col gap-10 lg:mt-0 2xl:mt-3'>
+    <div className='mt-10 flex flex-col gap-10 lg:mt-0 2xl:mt-7'>
        <section className='flex flex-col gap-5 md:border md:border-[#222] md:rounded-xl md:p-10 lg:gap-8 lg:rounded-2xl xl:gap-5 xl:p-12 2xl:p-16'>
         <h1 className='text-[1.3em] poppins-bold xs:text-[1.7em] lg:text-[2.2em] lg:leading-9 xl:text-[2.5em] xl:leading-[1.2em] 2xl:text-[2.8em]'>EMPOWERING BUSINESSES,<br />CREATIVITY MEETS FUNCTIONALITY</h1>
         <div className='flex gap-2 2xl:gap-8 2xl:items-center 2xl:mt-3'>
@@ -43,7 +43,7 @@ function HeroSection() {
        </section>
 
 
-       <section className='grid grid-cols-2 gap-3 lg:grid-cols-4'>
+       <section className='grid grid-cols-2 gap-3 md:grid-cols-4'>
           {
             services.map((data, index) => {
               return <ServiceBox data={data} key={index} />
@@ -64,9 +64,9 @@ const ServiceBox = ({data}: { data: { imgSrc: string; category: string} }) => {
     <div className='relative overflow-hidden rounded-lg lg:rounded-xl'>
       <img src={imgSrc} alt="" />
        
-       <div className="absolute justify-between text-white text-sm p-3 flex flex-col inset-0 bg-dark-overlay xs:p-5 md:p-8 lg:p-5 lg:px-7 2xl:p-10">
+       <div className="absolute justify-between text-white text-sm p-3 flex flex-col inset-0 bg-dark-overlay xs:p-5 md:p-4 lg:p-5 lg:px-7 2xl:p-10">
          <div className='relative'>
-            <h3 className='xs:text-[1.2em] md:text-[1.3em] lg:text-[1.4em] 2xl:text-[1.8em]'>
+            <h3 className='xs:text-[1.2em] md:text-[1em] lg:text-[1.4em] 2xl:text-[1.8em]'>
               
               {
                 splitWord.map((word, index) => {
@@ -77,7 +77,7 @@ const ServiceBox = ({data}: { data: { imgSrc: string; category: string} }) => {
             <div className='absolute bg-violet-light -bottom-2 w-1/2 h-[1px] max-w-[2em] md:max-w-[5em] md:h-[3px]'></div>
          </div>
       
-         <div className='self-end bg-white p-2 rounded-full xs:p-3 md:p-4 xl:cursor-pointer 2xl:p-5'><img draggable={false} className='w-3 select-none md:w-4' src={newTabArrow} alt="" /></div>
+         <div className='self-end bg-white p-2 rounded-full xs:p-3 xl:cursor-pointer 2xl:p-5'><img draggable={false} className='w-3 select-none md:w-3' src={newTabArrow} alt="" /></div>
        </div>
      
     </div>

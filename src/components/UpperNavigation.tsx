@@ -142,7 +142,7 @@ interface NavigationProps {
 const NavigationBar: React.FC<NavigationProps> = ({sidenavVisible, theme, toggleTheme, visibility, navFixed}) => {
 
   return (
-    <nav className={`${!sidenavVisible && "-translate-x-full lg:-translate-x-0"} ${visibility} fixed bg-white top-0 bottom-0 left-0 w-11/12 max-w-[16em] p-5 flex-col gap-10 z-20 lg:relative lg:flex-row lg:justify-between lg:container lg:w-full lg:px-0 lg:mx-auto ${navFixed && "transition-all duration-700 lg:py-2"}`}>
+    <nav className={`${!sidenavVisible && "-translate-x-full lg:-translate-x-0"} ${visibility} fixed bg-white top-0 bottom-0 left-0 w-11/12 max-w-[16em] p-5 flex-col gap-10 z-20 lg:relative lg:flex-row lg:justify-between lg:container lg:w-full lg:px-0 lg:mx-auto ${navFixed ? "lg:transition-all duration-700 lg:py-2" : "lg:transition-none"} transition-all duration-700`}>
     
         <div className='flex gap-2 items-center relative before:absolute before:w-full before:h-[2px] before:bg-light-gray before:bottom-0 pb-4 lg:before:hidden lg:gap-3 lg:pb-0'>
             <img className='w-7 xl:w-9' src={logoLight} alt="" />

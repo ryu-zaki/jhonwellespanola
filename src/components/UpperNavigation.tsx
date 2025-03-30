@@ -11,7 +11,7 @@ import sunActive from '../assets/UpperNav/sun-active.png';
 import sunInactive from '../assets/UpperNav/sun-inactive.png';
 import upperNavigations from '../static data/Navigations';
 import { useTheme } from './ThemeContext';
-import { faFacebook, faInstagram, faLinkedin, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 
 function UpperNavigation() {

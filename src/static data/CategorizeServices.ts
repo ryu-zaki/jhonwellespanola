@@ -1,6 +1,5 @@
 import responsiveBg from '../assets/Services/responsive-design-bg.jpg';
 import uiImplementationBg from '../assets/Services/ui-implementation-bg.jpg';
-import frameworkBg from '../assets/Services/frontend-frameworks-bg.jpg';
 
 
 

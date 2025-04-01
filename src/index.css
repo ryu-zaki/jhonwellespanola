@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  
+}
+
 @theme {
   --color-violet-light: #9314F4;
   --color-violet-dark: #7B11CD;
@@ -9,10 +13,12 @@
   --color-gray: #787777;
   --color-dark: #333;
   --color-dark-overlay: rgba(51,51,51,0.5);
-
+  --color-darker-overlay: rgba(51,51,51,0.7);
+  
   /* Shadow */
   --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
 
   /* Media Queries Breakpoints */
   --breakpoint-xs: 550px;
+
 }

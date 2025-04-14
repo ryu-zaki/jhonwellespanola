@@ -1,0 +1,64 @@
+import React from 'react'
+import SectionTitle from './SectionTitle'
+import { CertData, FlexDirection } from '../static data/Certificates'
+import certificatesData from '../static data/Certificates'
+
+
+
+function Certificates() {
+  
+  
+    return (
+    <div className='w-full'>
+        <SectionTitle 
+        description=''
+        category='My Achivements'
+        title='Certifications' />
+
+        
+        <div className='flex flex-col gap-10 mt-10 sm:gap-20 md:w-full xl:mt-24'>
+          {
+            certificatesData.map(({ img, scope, description, direction }, index) => {
+                return <CertificateBox 
+                key={index}
+                direction={direction}
+                img={img} 
+                description={description}  
+                scope={scope}
+                />
+            })
+          }
+        </div>
+    </div>
+  )
+}
+
+const CertificateBox: React.FC<CertData> = ({ img, description, scope, direction }) => {
+   
+    return (
+        <div className={`${(direction === FlexDirection.Normal) ? "md:flex-row" : "md:flex-row-reverse"} flex flex-col gap-10  md:w-full md:items-center md:gap-5 lg:gap-10`}>
+          <img className='rounded-xl border border-dark sm:w-[550px] sm:mx-auto md:mx-0 md:w-1/2 lg:w-[25em] xl:w-[30em] 2xl:w-[33em]' src={img} alt="" />
+
+          <div className='text-sm sm:text-base md:text-sm lg:text-base xl:text-lg 2xl:text-[1.4em]'>
+          
+            {description}
+
+           <div className='shadow-2xs mt-10 bg-white shadow-light p-5 rounded-lg space-y-5 sm:p-8 md:mt-5 xl:p-10 xl:mt-14'>
+           {
+                scope.map(({title, subDescription}, index) => {
+                    return <div className='bg-white' key={index}>
+                        <h3 className='poppins-semibold mb-2'>{title}</h3>
+                        
+                        <p className='relative pl-5 flex items-center before:absolute before:w-2 before:aspect-square before:bg-violet-dark before:rounded-full before:left-0'>{subDescription}</p>
+                    </div>
+
+                })
+            }
+           </div>
+            
+          </div>
+        </div>
+    )
+}
+
+export default Certificates

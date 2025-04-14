@@ -1,0 +1,3 @@
+export const responsivDesignComp = <p className="text-center md:text-left">Principles of <span className='text-violet-dark poppins-semibold'>responsive web design</span>, ensuring seamless and user-friendly experiences across all devices.</p>
+
+export const dataAlgoComp = <p className="text-center md:text-left">Strong foundation in <span className='text-violet-dark poppins-semibold'>algorithms and data structures</span>, essential for writing efficient and scalable code.</p>

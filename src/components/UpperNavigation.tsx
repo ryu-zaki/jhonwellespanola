@@ -68,16 +68,16 @@ function UpperNavigation() {
     {
       navFixed && (
       <div className={`additionalNav navbar_animate opacity-0 fixed px-2 z-10 text-white top-[3.2em] left-0 right-0 translate-y-0 bg-violet-darker lg:top-[2.6em] xl:top-[3.2em]`}>
-        <div className='flex text-sm py-2 justify-between items-center container mx-auto lg:py-1 2xl:text-[1.4em]'>
+        <div className='flex text-sm py-2 justify-between items-center container mx-auto lg:py-1 2xl:text-[1.6em]'>
            <div className="w-full flex items-center gap-5">
                <div className='flex items-center gap-2 relative group'>
                  <FontAwesomeIcon icon={faLinkedin} />
-                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-sm'>Jhonwell Espanola</p>
+                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-[.6em]'>Jhonwell Espanola</p>
                </div>
 
                <div className='flex relative items-center gap-2'>
                  <FontAwesomeIcon icon={faPhone} />
-                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-sm'>09514406062</p>
+                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-[.6em]'>09514406062</p>
                </div>
            </div>
 
@@ -126,7 +126,7 @@ const NavigationBtn = ({data, navFixed}: { data: {imgSrc: string; category: stri
             ) : <img className='w-4 lg:hidden' src={imgSrc} alt="" />
           }
           
-          <p className={`${category === "Home" && "text-dark poppins-semibold lg:relative lg:before:absolute lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark"} navbtn ${navFixed ? "lg:text-[.8em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
+          <p className={`${category === "Home" && "text-dark poppins-semibold lg:relative lg:before:absolute lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark"} navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1.08em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
         </div>
     )
 }

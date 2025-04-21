@@ -1,4 +1,4 @@
-import React from 'react'
+
 import dartImg from '../assets/Goals/Dart-Img.png';
 import SectionTitle from './SectionTitle';
 

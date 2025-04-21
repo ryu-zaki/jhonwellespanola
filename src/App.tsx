@@ -7,6 +7,7 @@ import RecentProject from './components/RecentProjects'
 import ServicesSection from './components/ServicesSection'
 import UpperNavigation from './components/UpperNavigation'
 import Certificates from './components/Certificates'
+import GoalsSection from './components/GoalsSection'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
        <RecentProject />
        <PersonalInfo />
        <Certificates />
+       <GoalsSection />
       </div>
       
     </div>

@@ -168,11 +168,11 @@ const NavigationBar: React.FC<NavigationProps> = ({sidenavVisible, theme, toggle
                 <h3 className='poppins-semibold lg:hidden'>Display Theme</h3>
 
                 <div className="flex gap-4 items-center mt-5 lg:mt-0">
-                    <div className={`bg-light-gray flex items-center relative rounded-full cursor-pointer w-14 aspect-[10/5] ${navFixed ? "lg:w-12" : "2xl:w-16"}`}>
+                    <div className={`bg-light-gray flex items-center relative rounded-full cursor-pointer w-14 aspect-[10/5] ${navFixed ? "lg:w-12 2xl:w-16" : "2xl:w-16"}`}>
                        <img draggable={false} className={`select-none absolute w-1/4 left-3 ${theme === "Light" && "opacity-0 translate-x-1/2"} transition-all duration-500 ${navFixed && "lg:left-2"}`} src={moonInactive} alt="" />
                        <img draggable={false} className={`select-none absolute w-1/4 right-3 ${theme !== "Light" && `opacity-0 -translate-x-1/2`} transition-all duration-500 ${navFixed && "lg:right-2"}`}  src={sunInactive} alt="" />
                       
-                       <div className={`absolute bg-white rounded-full w-[32%] aspect-square left-[.3em] p-1 ${theme === "Dark" && `translate-x-[2.03em] ${navFixed && "lg:translate-x-[1.7em]"}`} transition-all duration-500`}><img src={theme === "Light" ? moonActive : sunActive} draggable={false} className="select-none" alt="" /></div>
+                       <div className={`absolute bg-white rounded-full w-[32%] aspect-square left-[.45em] p-1 ${theme === "Dark" && `translate-x-[1.8em] 2xl:translate-x-[2.15em] ${navFixed && "lg:translate-x-[1.45em]"}`} transition-all duration-500`}><img src={theme === "Light" ? moonActive : sunActive} draggable={false} className="select-none" alt="" /></div>
 
                        <div onClick={toggleTheme} className='absolute inset-0 z-10'></div>
                     </div>

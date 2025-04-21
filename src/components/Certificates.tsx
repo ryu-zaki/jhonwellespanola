@@ -37,9 +37,9 @@ const CertificateBox: React.FC<CertData> = ({ img, description, scope, direction
    
     return (
         <div className={`${(direction === FlexDirection.Normal) ? "md:flex-row" : "md:flex-row-reverse"} flex flex-col gap-10  md:w-full md:items-center md:gap-5 lg:gap-10`}>
-          <img className='rounded-xl border border-dark sm:w-[550px] sm:mx-auto md:mx-0 md:w-1/2 lg:w-[25em] xl:w-[30em] 2xl:w-[33em]' src={img} alt="" />
+          <img className='rounded-xl border border-dark sm:w-[550px] sm:mx-auto md:mx-0 md:w-[43%] lg:w-[25em] xl:w-[30em] 2xl:w-[33em]' src={img} alt="" />
 
-          <div className='text-sm sm:text-base md:text-sm lg:text-base xl:text-lg 2xl:text-[1.4em]'>
+          <div className='text-sm xs:text-base  lg:text-base xl:text-lg 2xl:text-[1.4em]'>
           
             {description}
 

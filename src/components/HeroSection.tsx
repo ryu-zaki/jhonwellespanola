@@ -27,7 +27,7 @@ function HeroSection() {
           <p className='text-violet-dark poppins-semibold 2xl:text-xl'>+10 skills</p>
         </div>
 
-        <p className='text-sm leading-7 xs:text-base xl:mt-5 xl:text-lg xl:leading-8 2xl:text-[1.4em] 2xl:leading-[1.8em]'>I specialize in building clean, responsive, and <span className='text-violet-dark poppins-semibold'>user-friendly websites</span>. I’m constantly learning and evolving, currently diving into TypeScript to level up my skills. Let’s create something amazing together!</p>
+        <p className='text-sm leading-7 xs:text-base xl:mt-5 xl:text-lg xl:leading-8 2xl:text-[1.4em] 2xl:leading-[1.8em]'>I specialize in building clean, responsive, and <span className='text-violet-dark poppins-semibold'>scalable web applications</span>, both on the frontend and backend. I’m always expanding my skill set, currently diving into advanced JavaScript frameworks to enhance my development workflow. Let’s collaborate and create something amazing together!</p>
 
         <div className='flex gap-4 text-sm xs:mt-3 xs:gap-6 2xl:text-lg 2xl:gap-8'>
           <button className='flex p-3 px-4 cursor-pointer rounded-md items-center gap-2 bg-violet-dark text-white xs:px-6 xl:gap-3 2xl:px-8'>

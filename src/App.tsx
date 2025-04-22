@@ -7,10 +7,12 @@ import ServicesSection from './components/ServicesSection'
 import UpperNavigation from './components/UpperNavigation'
 import Certificates from './components/Certificates'
 import GoalsSection from './components/GoalsSection'
+import Footer from './components/Footer'
 
 function App() {
 
   return (
+    <>
     <div className='container mx-auto px-2 text-dark lg:px-6 2xl:px-10'>
       <UpperNavigation />
       <div className='flex flex-col gap-16 md:gap-28 lg:gap-32 xl:gap-48'> 
@@ -21,8 +23,10 @@ function App() {
        <Certificates />
        <GoalsSection />
       </div>
-      
     </div>
+    <Footer />
+    </>
+    
   )
 }
 

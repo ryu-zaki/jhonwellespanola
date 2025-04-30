@@ -5,6 +5,9 @@ import infoIcon from '../assets/Services/info-violet.png';
 import infoIconWhite from '../assets/Services/info-white.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import chevIcon from '../assets/Services/angle-small-down.png';
+import { useGSAP } from "@gsap/react";
+import gsap from 'gsap'
 
 interface InfoModalProps {
     info: string;
@@ -15,16 +18,37 @@ interface InfoModalProps {
 
 const ServicesSection: React.FC = () => {
     
+    const [ btnCat ] = React.useState(["Front-end", "Back-end", "Deployment"]);
+
     const [activeCategory, setActiveCategory] = React.useState<string>("Front-end");
      console.log(categorizeServices.find(({category}) => category === activeCategory))
-    return <div>
+     const serviceSectionCon = React.useRef<HTMLDivElement | null>(null);
+
+    useGSAP(() => {
+     
+     const tl = gsap.timeline({ defaults: { opacity: 0, stagger: .1 } });
+   
+     tl.from('.service-box', {
+       scale: .2,
+     })
+     .from('.info-icon', {
+        translateY: '-50px',
+     }, '-=.2')
+     .fromTo('.service-label', {
+        translateX: '-50px', 
+    
+      }, { opacity: 1, translateX: 0, stagger: .2 }, '-=.3')
+
+    }, { dependencies: [activeCategory], scope: serviceSectionCon })
+
+    return <div ref={serviceSectionCon}>
         <SectionTitle 
           title="What can I provide?"
           category="Services"
           description="Whether you need an e-commerce platform, a business website, or a custom web application, I’m here to bring your vision to life."
         />
 
-        <div className="mt-10 xl:mt-16">
+        <div className="flex flex-col mt-10 xl:mt-16 xs:items-center">
             {/* Grid */}
             <div className="flex flex-col gap-5 xs:flex-row xs:flex-wrap xs:justify-center xs:gap-2 lg:gap-8 xl:flex-nowrap">
                {
@@ -35,17 +59,55 @@ const ServicesSection: React.FC = () => {
                }           
             </div>
 
-            <div className="text-xs flex justify-center gap-4 mt-10 xs:text-base md:gap-8 xl:gap-12 2xl:text-[1.4em] 2xl:gap-14 2xl:mt-14">
+            <div className="text-xs hidden justify-center gap-4 mt-10 xs:text-base md:flex md:gap-8 xl:gap-12 2xl:text-[1.4em] 2xl:gap-14 2xl:mt-14">
                 {
-                    ["Front-end", "Back-end", "Deployment & DevOps"]
-                    .map((category: string, index) => {
-                        return <button className={`${activeCategory === category && "bg-violet-dark rounded-md text-white px-6 py-2 2xl:px-10 2xl:py-3"} lg:cursor-pointer`} onClick={() => setActiveCategory(category)} key={index}>{category}</button>
+                    
+                    btnCat.map((category: string, index) => {
+                        return <button className={`${activeCategory === category ? "bg-violet-dark rounded-md text-white px-6 py-2 2xl:px-10 2xl:py-3" : "hover:text-violet-dark hover:font-semibold"} transition-all duration-500 lg:cursor-pointer`} onClick={() => setActiveCategory(category)} key={index}>{category}</button>
                     })
                 }
             </div>
+
+            <CategorySwitch 
+              activeCategory={activeCategory} 
+              btnCat={btnCat}
+              setActiveCategory={setActiveCategory}
+              
+            />
         </div>
     </div>
 }
+
+const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setActiveCategory: React.Dispatch<React.SetStateAction<string>> }> = ({ activeCategory, btnCat, setActiveCategory }) => {
+
+    const [optionVisible, setOptionVisible] = React.useState(false);
+
+    const switchCategory = (item: string) => {
+        setOptionVisible(false);
+        setActiveCategory(item);
+        
+    }
+
+    return (
+           <div className="relative mt-8 text-[.8em] border-[#444] rounded-md border w-fit md:hidden">
+               <div className="flex relative items-center p-2 px-4 gap-2">
+                 <div onClick={() => setOptionVisible(prev => !prev)} className="z-10 absolute inset-0"></div>
+                 <p className="poppins-semibold">{activeCategory}</p>
+                 <img className={`${!optionVisible && "-rotate-90" } transition-all duration-200 w-6`} src={chevIcon} alt="" />
+               </div>
+              
+               <div className={`${optionVisible && "scale-0"} origin-top-left transition-all duration-300 w-full absolute top-[130%] shadow-light p-2 pr-7 bg-white rounded-lg`}>
+                     {
+                        btnCat.filter((item: string) => item != activeCategory).map((item) => {
+                            return <p className="p-2 pl-4" onClick={() => switchCategory(item)}>{item}</p>
+                        })
+                     }
+               </div>         
+            </div>
+    )
+} 
+
+
 
 
 const ServiceBox: React.FC<{ data: ServiceData}> = ({ data }) => {
@@ -55,12 +117,12 @@ const ServiceBox: React.FC<{ data: ServiceData}> = ({ data }) => {
 
     return (
         <>
-         <div className="relative overflow-hidden rounded-md xs:w-[40%]">
+         <div className="relative origin-top service-box overflow-hidden rounded-md xs:w-[40%]">
            <img className="w-full aspect-[14/9]" src={image} alt="" />
            
            <div className="absolute text-white inset-0 bg-dark-overlay flex flex-col items-end justify-between p-6 lg:p-8">
-            <img onClick={() => setModalVisible(true)} className="w-6 lg:cursor-pointer 2xl:w-8" src={infoIconWhite} alt="" />
-             <h3 className="self-start poppins-semibold lg:text-lg 2xl:text-[1.6em]">{serviceTitle}</h3>
+            <img onClick={() => setModalVisible(true)} className="info-icon w-6 lg:cursor-pointer 2xl:w-8" src={infoIconWhite} alt="" />
+             <h3 className="service-label self-start poppins-semibold lg:text-lg 2xl:text-[1.6em]">{serviceTitle}</h3>
            </div>
            
          </div>

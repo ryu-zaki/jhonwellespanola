@@ -1,9 +1,8 @@
 
 
 *, *::before, *::after {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
+    font-family: "Poppins";
+    
 }
 
 .poppins-semibold {

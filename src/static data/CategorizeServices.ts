@@ -5,7 +5,7 @@ import databaseBg from '../assets/Services/database-bg.jpg';
 import authBg from '../assets/Services/auth-bg.jpg'
 import cicd from '../assets/Services/cicd-bg.jpg';
 import iac from '../assets/Services/iac-bg.png';
-import cloudBg from '../assets/Services/cloud-bg.svg';
+import cloudBg from '../assets/Services/cloud-bg.png';
 
 interface ServiceData {
     image: string;
@@ -44,9 +44,9 @@ const categorizeServices: {category: string, services: ServiceData[]}[] = [
     },
 
     {
-        category: "Deployment & DevOps",
+        category: "Deployment",
         services: [
-            CreateServiceData({ image: cicd, serviceTitle: "Continuous Integration & Continuous Deployment", info: 'I specialize in Continuous Integration (CI) & Continuous Deployment (CD), ensuring that code changes are automatically tested, integrated, and deployed seamlessly. With CI, I streamline the process of merging code into a central repository and running tests to identify errors early. For CD, I automate the deployment of changes directly into production, enabling rapid and reliable software delivery.' }),
+            CreateServiceData({ image: cicd, serviceTitle: "CI/CD", info: 'I specialize in Continuous Integration (CI) & Continuous Deployment (CD), ensuring that code changes are automatically tested, integrated, and deployed seamlessly. With CI, I streamline the process of merging code into a central repository and running tests to identify errors early. For CD, I automate the deployment of changes directly into production, enabling rapid and reliable software delivery.' }),
 
             CreateServiceData({ image: iac, serviceTitle: "Infrastructure as Code (IaC)", info: 'I specialize in Infrastructure as Code (IaC), enabling the automation and management of infrastructure through code. Using tools like Terraform and AWS CloudFormation, I define and provision resources in a repeatable and consistent manner, ensuring scalable and reliable environments. This approach eliminates manual configuration, reduces errors, and enhances the speed of deployment across multiple environments.' }),
 

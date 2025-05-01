@@ -31,13 +31,9 @@ const ServicesSection: React.FC = () => {
      tl.from('.service-box', {
        scale: .2,
      })
-     .from('.info-icon', {
-        translateY: '-50px',
-     }, '-=.2')
-     .fromTo('.service-label', {
-        translateX: '-50px', 
-    
-      }, { opacity: 1, translateX: 0, stagger: .2 }, '-=.3')
+     .from('.service-box-details', {
+      opacity: 0, translateX: "-60px"
+     }, '-=.3')
 
     }, { dependencies: [activeCategory], scope: serviceSectionCon })
 
@@ -121,8 +117,8 @@ const ServiceBox: React.FC<{ data: ServiceData}> = ({ data }) => {
            <img className="w-full aspect-[14/9]" src={image} alt="" />
            
            <div className="absolute text-white inset-0 bg-dark-overlay flex flex-col items-end justify-between p-6 lg:p-8">
-            <img onClick={() => setModalVisible(true)} className="info-icon w-6 lg:cursor-pointer 2xl:w-8" src={infoIconWhite} alt="" />
-             <h3 className="service-label self-start poppins-semibold lg:text-lg 2xl:text-[1.6em]">{serviceTitle}</h3>
+            <img onClick={() => setModalVisible(true)} className="service-box-details w-6 lg:cursor-pointer 2xl:w-8" src={infoIconWhite} alt="" />
+             <h3 className="service-box-details self-start poppins-semibold lg:text-lg 2xl:text-[1.6em]">{serviceTitle}</h3>
            </div>
            
          </div>

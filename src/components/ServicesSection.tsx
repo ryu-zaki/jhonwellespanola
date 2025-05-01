@@ -44,11 +44,11 @@ const ServicesSection: React.FC = () => {
     
     useGSAP(() => {
       if (!isClick) {
-        const tl = gsap.timeline( {defaults: { translateY: "8em", opacity: 0 }} );
+        const tl = gsap.timeline( {defaults: { duration: .7, translateY: "6em", opacity: 0 }} );
 
         tl.from('.center_proj', { })
-        tl.from('.side_proj', {}, '-=.35')
-        
+        tl.from('.side_proj', {}, '-=.45')
+
         ScrollTrigger.create({
          animation: tl,
          trigger: serviceSectionCon.current,
@@ -67,9 +67,9 @@ const ServicesSection: React.FC = () => {
           description="Whether you need an e-commerce platform, a business website, or a custom web application, I’m here to bring your vision to life."
         />
 
-        <div className="flex service-con flex-col mt-10 xl:mt-16 xs:items-center">
+        <div className="flex service-con flex-col mt-10 xl:mt-16 xs:items-center lg:mt-16">
             {/* Grid */}
-            <div className="flex flex-col gap-5 xs:flex-row xs:flex-wrap xs:justify-center xs:gap-2 lg:gap-8 xl:flex-nowrap">
+            <div className="flex flex-wrap justify-center gap-2 xs:flex-row xs:justify-center xs:gap-3 lg:flex-nowrap lg:gap-3 xl:flex-nowrap">
                {
                  categorizeServices.find(({category}) => category === activeCategory)?.services
                  .map((data, index) => {
@@ -138,12 +138,12 @@ const ServiceBox: React.FC<{ data: ServiceData, index: number}> = ({ data, index
 
     return (
         <>
-         <div className={`${index === 1 ? "center_proj" : "side_proj"} relative origin-top service-box overflow-hidden rounded-md xs:w-[40%]`}>
-           <img className="w-full aspect-[14/9]" src={image} alt="" />
+         <div className={`${index === 1 ? "center_proj" : "side_proj"} w-[48%] relative origin-top service-box overflow-hidden rounded-md lg:rounded-xl`}>
+           <img className="w-full aspect-[14/12]  xs:aspect-[14/9]" src={image} alt="" />
            
-           <div className="absolute text-white inset-0 bg-dark-overlay flex flex-col items-end justify-between p-6 lg:p-8">
-            <img onClick={() => setModalVisible(true)} className="service-box-details w-6 lg:cursor-pointer 2xl:w-8" src={infoIconWhite} alt="" />
-             <h3 className="service-box-details self-start poppins-semibold lg:text-lg 2xl:text-[1.6em]">{serviceTitle}</h3>
+           <div className="absolute text-white inset-0 bg-dark-overlay flex flex-col items-end justify-between p-2 xs:p-6 lg:p-8">
+            <img onClick={() => setModalVisible(true)} className="service-box-details w-4 xs:w-5 md:w-6 lg:cursor-pointer 2xl:w-8" src={infoIconWhite} alt="" />
+             <h3 className="service-box-details text-sm self-start md:text-base poppins-semibold lg:text-lg 2xl:text-[1.6em]">{serviceTitle}</h3>
            </div>
            
          </div>

@@ -52,8 +52,7 @@ const CertificateBox: React.FC<CertData> = ({ img, description, scope, direction
      ScrollTrigger.create({
       animation: tl,
       trigger: certRef.current,
-      start: "top center",
-      markers: true
+      start: "top center"
      })
 
     }, { scope: certRef })

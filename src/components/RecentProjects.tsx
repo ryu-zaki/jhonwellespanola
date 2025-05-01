@@ -20,7 +20,6 @@ const RecentProject = () => {
         animation: tl,  
         trigger: '.proj-section',
         start: 'top center',
-        markers: true
       })
     
     }, { scope:  recentProjs})

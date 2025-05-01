@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import chevIcon from '../assets/Services/angle-small-down.png';
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 
 interface InfoModalProps {
@@ -17,25 +18,47 @@ interface InfoModalProps {
 }
 
 const ServicesSection: React.FC = () => {
-    
+    gsap.registerPlugin(ScrollTrigger)
     const [ btnCat ] = React.useState(["Front-end", "Back-end", "Deployment"]);
+    const [isClick, setIsClick] = React.useState(false);
 
     const [activeCategory, setActiveCategory] = React.useState<string>("Front-end");
      console.log(categorizeServices.find(({category}) => category === activeCategory))
      const serviceSectionCon = React.useRef<HTMLDivElement | null>(null);
+     console.log(isClick)
 
     useGSAP(() => {
-     
-     const tl = gsap.timeline({ defaults: { opacity: 0, stagger: .1 } });
+     if (isClick) {
+      const tl = gsap.timeline({ defaults: { opacity: 0, stagger: .1 } });
    
-     tl.from('.service-box', {
-       scale: .2,
-     })
-     .from('.service-box-details', {
-      opacity: 0, translateX: "-60px"
-     }, '-=.3')
+      tl.from('.service-box', {
+        scale: .2,
+      })
+      .from('.service-box-details', {
+       opacity: 0, translateX: "-60px"
+      }, '-=.3')
+     }
+    
 
-    }, { dependencies: [activeCategory], scope: serviceSectionCon })
+    }, { dependencies: [activeCategory, isClick], scope: serviceSectionCon })
+    
+    useGSAP(() => {
+      if (!isClick) {
+        const tl = gsap.timeline( {defaults: { translateY: "8em", opacity: 0 }} );
+
+        tl.from('.center_proj', { })
+        tl.from('.side_proj', {}, '-=.35')
+        
+        ScrollTrigger.create({
+         animation: tl,
+         trigger: serviceSectionCon.current,
+         start: "top center",
+        })
+      }
+     
+
+    }, {scope: serviceSectionCon})
+
 
     return <div ref={serviceSectionCon}>
         <SectionTitle 
@@ -44,13 +67,13 @@ const ServicesSection: React.FC = () => {
           description="Whether you need an e-commerce platform, a business website, or a custom web application, I’m here to bring your vision to life."
         />
 
-        <div className="flex flex-col mt-10 xl:mt-16 xs:items-center">
+        <div className="flex service-con flex-col mt-10 xl:mt-16 xs:items-center">
             {/* Grid */}
             <div className="flex flex-col gap-5 xs:flex-row xs:flex-wrap xs:justify-center xs:gap-2 lg:gap-8 xl:flex-nowrap">
                {
                  categorizeServices.find(({category}) => category === activeCategory)?.services
                  .map((data, index) => {
-                    return <ServiceBox data={data} key={index} />
+                    return <ServiceBox index={index} data={data} key={index} />
                  })
                }           
             </div>
@@ -59,12 +82,13 @@ const ServicesSection: React.FC = () => {
                 {
                     
                     btnCat.map((category: string, index) => {
-                        return <button className={`${activeCategory === category ? "bg-violet-dark rounded-md text-white px-6 py-2 2xl:px-10 2xl:py-3" : "hover:text-violet-dark hover:font-semibold"} transition-all duration-500 lg:cursor-pointer`} onClick={() => setActiveCategory(category)} key={index}>{category}</button>
+                        return <button className={`${activeCategory === category ? "bg-violet-dark rounded-md text-white px-6 py-2 2xl:px-10 2xl:py-3" : "hover:text-violet-dark hover:font-semibold"} transition-all duration-500 lg:cursor-pointer`} onClick={() => {setIsClick(true); setActiveCategory(category)}} key={index}>{category}</button>
                     })
                 }
             </div>
 
             <CategorySwitch 
+              setIsClick={setIsClick}
               activeCategory={activeCategory} 
               btnCat={btnCat}
               setActiveCategory={setActiveCategory}
@@ -74,15 +98,16 @@ const ServicesSection: React.FC = () => {
     </div>
 }
 
-const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setActiveCategory: React.Dispatch<React.SetStateAction<string>> }> = ({ activeCategory, btnCat, setActiveCategory }) => {
+const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setActiveCategory: React.Dispatch<React.SetStateAction<string>>, setIsClick: React.Dispatch<React.SetStateAction<boolean>> }> = ({ activeCategory, btnCat, setActiveCategory, setIsClick }) => {
 
     const [optionVisible, setOptionVisible] = React.useState(false);
 
     const switchCategory = (item: string) => {
         setOptionVisible(false);
+        setIsClick(true);
         setActiveCategory(item);
-        
     }
+    
 
     return (
            <div className="relative mt-8 text-[.8em] border-[#444] rounded-md border w-fit md:hidden">
@@ -106,14 +131,14 @@ const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setAct
 
 
 
-const ServiceBox: React.FC<{ data: ServiceData}> = ({ data }) => {
+const ServiceBox: React.FC<{ data: ServiceData, index: number}> = ({ data, index }) => {
     
     const { image, serviceTitle, info } = data;
     const [modalVisible, setModalVisible] = React.useState<boolean>(false);
 
     return (
         <>
-         <div className="relative origin-top service-box overflow-hidden rounded-md xs:w-[40%]">
+         <div className={`${index === 1 ? "center_proj" : "side_proj"} relative origin-top service-box overflow-hidden rounded-md xs:w-[40%]`}>
            <img className="w-full aspect-[14/9]" src={image} alt="" />
            
            <div className="absolute text-white inset-0 bg-dark-overlay flex flex-col items-end justify-between p-6 lg:p-8">

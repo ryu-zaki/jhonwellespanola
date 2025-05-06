@@ -9,6 +9,8 @@ import githubIcom from '../assets/Projects/github.png';
 import crossIcon from '../assets/Projects/cross-small.png'
 import { EffectCoverflow } from 'swiper/modules';
 import 'swiper/css'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap'
 
 function RecentProjects() {
 
@@ -90,7 +92,7 @@ const PaginationCircle:React.FC<{ activeSlide: number, setActiveSlide: React.Dis
       {
         arr.map((_, index) => {
            return <div onClick={() => hadleSwitchPage(index)} key={index} className={`${activeSlide === (index + 1) ? "bg-violet-dark" : "bg-[#aaa]"
-           } w-[10px] rounded-full aspect-square`}></div>
+           } w-[10px] rounded-full dots aspect-square`}></div>
         })
       }
     </div>
@@ -109,18 +111,58 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
 
   const [swiper, setSwiper] = React.useState<SwiperType>();
   const [activeSlide, setActiveSlide] = React.useState<number>(0); 
+  const modalRef = React.useRef(null)
+
+  useGSAP(() => {
+   if (modalVisible) {
+    const tl = gsap.timeline({ delay: .2, defaults: { opacity: 0 } });
+
+    tl
+    .from('.text', {
+      translateX: "-60px", 
+      stagger: .15
+    })
+    .from('.page', {
+      translateY: "60px",
+      stagger: .1
+    }, '-=.4')
+    .from('.dots', {
+      translateY: "60px", stagger: .1
+    }, '-=.8')
+    .from('.desc', {
+      translateY: "-60px"
+    }, '-=.8')
+    .from('.btns', { 
+      translateY: "60px", stagger: .15
+    }, '-=.8')
+   }
+   
+
+  }, { scope: modalRef, dependencies: [modalVisible] })
+
+  const handleCloseModal = () => {
+
+    setModalVisible(false);
+    const timeout = setTimeout(() => {
+      swiper?.slideToLoop(0)
+      clearTimeout(timeout)
+    }, 500)
+      
+    
+    
+  }
 
   return (
     <>
     {
-    modalVisible && <div onClick={() => setModalVisible(false)} className='fixed inset-0 z-50 bg-dark-overlay w-full h-full'></div>
+    modalVisible && <div onClick={handleCloseModal} className='fixed inset-0 z-50 bg-dark-overlay w-full h-full'></div>
     
    }
-    <div className={`${!modalVisible && "translate-y-full"} transition-all ease-out duration-700 fixed z-50 bottom-0 right-0 w-full bg-white rounded-tr-2xl rounded-tl-3xl flex flex-col gap-8 py-5`}>
-      <img onClick={() => setModalVisible(false)} draggable={false} className='select-none absolute top-3 right-3 w-[25px]' src={crossIcon} alt="" />
+    <div ref={modalRef} className={`${!modalVisible && "translate-y-full"} transition-all ease-out duration-700 fixed z-50 bottom-0 right-0 w-full bg-white rounded-tr-2xl rounded-tl-3xl flex flex-col gap-8 py-5`}>
+      <img onClick={handleCloseModal} draggable={false} className='select-none z-10 absolute top-3 right-3 w-[25px]' src={crossIcon} alt="" />
        <div className='px-5'>
-          <h2 className="text-lg font-semibold">{title}</h2>
-          <p className='text-sm font-semibold text-violet-dark'>{category}</p>
+          <h2 className="text-lg text font-semibold">{title}</h2>
+          <p className='text-sm text font-semibold text-violet-dark'>{category}</p>
        </div>
      <div>
      <Swiper
@@ -137,7 +179,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
 
         {
           imgsSample.map((img, index) => {
-            return <SwiperSlide key={index}>
+            return <SwiperSlide className='page' key={index}>
               <img className='w-full' src={img} alt="" />
             </SwiperSlide>
           })
@@ -152,15 +194,15 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
      </div>
       
       <div className='px-5'>
-       <p className='text-sm'>
+       <p className='desc text-sm'>
         {description}
        </p>
 
        <div className='flex text-sm gap-3 mt-7'>
-        <button className='bg-violet-dark text-white py-1 px-8 rounded-sm flex gap-2 items-center'>
+        <button className='btns bg-violet-dark text-white py-1 px-8 rounded-sm flex gap-2 items-center'>
           <img className='w-[15px]' src={rocketIcon} alt="" />
           Visit</button>
-        <button className='border-2 rounded-sm border-violet-darker flex gap-2 font-semibold items-center py-1 px-8 '>
+        <button className='btns border-2 rounded-sm border-violet-darker flex gap-2 font-semibold items-center py-1 px-8 '>
          <img src={githubIcom} alt="" className="w-[15px]" />
           Code</button>
       </div>

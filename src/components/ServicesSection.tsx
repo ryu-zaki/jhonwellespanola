@@ -117,7 +117,7 @@ const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setAct
                  <img className={`${!optionVisible && "-rotate-90" } transition-all duration-200 w-6`} src={chevIcon} alt="" />
                </div>
               
-               <div className={`${optionVisible && "scale-0"} origin-top-left transition-all duration-300 w-full absolute top-[130%] shadow-light p-2 pr-7 bg-white rounded-lg`}>
+               <div className={`${!optionVisible && "scale-0"} origin-top-left transition-all duration-300 w-full absolute top-[130%] shadow-light p-2 pr-7 bg-white rounded-lg`}>
                      {
                         btnCat.filter((item: string) => item != activeCategory).map((item) => {
                             return <p className="p-2 pl-4" onClick={() => switchCategory(item)}>{item}</p>

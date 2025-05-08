@@ -11,6 +11,8 @@ import { EffectCoverflow } from 'swiper/modules';
 import 'swiper/css'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 function RecentProjects() {
 
@@ -23,7 +25,7 @@ function RecentProjects() {
        />
 
        {/* Grid Section */}
-       <div className='grid mt-10 grid-cols-2 gap-2 gap-5-5'>
+       <div className='grid mt-10 grid-cols-2 gap-2 xs:grid-cols-6 lg:grid-cols-9 2xl:mt-14'>
            {
              Projects.map((data, index) => {
                return <ProjectBox index={index + 1} data={data} key={index} />
@@ -31,12 +33,12 @@ function RecentProjects() {
            }
        </div>
 
-       <div className='mt-10 flex flex-col gap-5'>
-        <div>
-          <h3 className='text-lg poppins-semibold mb-2'>Showcasing My Latest Work</h3>
-          <p>Each project reflects my dedication to clean design, user-focused functionality, and responsive performance. Whether it's a sleek website, an interactive UI, or a dynamic web application, these works highlight <span className='text-violet-light poppins-semibold'>my evolving</span> skills and passion for building engaging digital experiences.</p>
+       <div className='mt-10 flex flex-col gap-5 sm:flex-row lg:items-start'>
+        <div className='lg:shadow-light lg:p-8 lg:rounded-xl xl:p-10'>
+          <h3 className='text-lg poppins-semibold mb-2 xl:text-xl 2xl:text-[1.4em]'>Showcasing My Latest Work</h3>
+          <p className='xl:text-lg xl:leading-7 2xl:text-[1.4em] 2xl:leading-[1.8em]'>Each project reflects my dedication to clean design, user-focused functionality, and responsive performance. Whether it's a sleek website, an interactive UI, or a dynamic web application, these works highlight <span className='text-violet-light poppins-semibold'>my evolving</span> skills and passion for building engaging digital experiences.</p>
         </div>
-        <img className='rounded-lg' src={laptopImg} alt="" />
+        <img className='rounded-lg sm:hidden lg:block lg:w-72 xl:w-[21em] 2xl:w-[26.5em]' src={laptopImg} alt="" />
        </div>
     </div>
   )
@@ -60,11 +62,11 @@ const ProjectBox:React.FC<{ data: ProjectType, index: number }> = ({ data, index
         imgsSample={imgsSample}
         description={description}
     />
-    <div className={`${index === 3 ? "col-start-2 row-start-1 row-span-2 p-3" : index === 6 ? "col-span-2" : ""} w-full relative bg-linear-[0deg,#D9D9D9_5%,#222_100%] rounded-lg`}>
+    <div className={`${index === 3 ? "col-start-2 row-start-1 row-span-2 p-3 xs:col-span-3 xs:col-start-4 lg:col-start-7" : index === 6 ? "col-span-2" : index === 1 ? "xs:col-span-3 xs:row-start-1 xs:col-start-1" : index === 2 ? "xs:row-start-2 xs:col-span-3 lg:col-start-4 lg:row-start-1" : "xs:col-span-2"} w-full relative bg-linear-[0deg,#D9D9D9_5%,#222_100%] rounded-lg lg:p-5 md:cursor-pointer group`}>
        <div onClick={() => setModalVisible(true)} className="absolute inset-0 z-10"></div>
 
       <h3 className='absolute top-2 left-2 text-white poppins-semibold text-sm'>0{index}</h3>
-      <img className={`w-full h-full object-cover`} src={imgProj} alt="" />
+      <img className={`w-full h-full object-cover md:group-hover:scale-110 duration-500 transition-all`} src={imgProj} alt="" />
 
        {/* Overlay */}
        <div className="absolute inset-0 hidden">
@@ -91,8 +93,8 @@ const PaginationCircle:React.FC<{ activeSlide: number, setActiveSlide: React.Dis
     <div className='flex gap-2 justify-center mt-10'>
       {
         arr.map((_, index) => {
-           return <div onClick={() => hadleSwitchPage(index)} key={index} className={`${activeSlide === (index + 1) ? "bg-violet-dark" : "bg-[#aaa]"
-           } w-[10px] rounded-full dots aspect-square`}></div>
+           return <div onClick={() => hadleSwitchPage(index)} key={index} className={`${activeSlide === (index + 1) ? "bg-violet-dark md:bg-violet-darker" : "bg-[#aaa] md:bg-white"
+           } w-[10px] rounded-full dots aspect-square md:w-[8px]`}></div>
         })
       }
     </div>
@@ -109,14 +111,15 @@ interface InfoModalType {
 
 const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, title, category, description, imgsSample }) => {
 
-  const [swiper, setSwiper] = React.useState<SwiperType>();
-  const [activeSlide, setActiveSlide] = React.useState<number>(0); 
+  const [mobileSwiper, setMobileSwiper] = React.useState<SwiperType>();
+  const [desktopSwiper, setDesktopSwiper] = React.useState<SwiperType>();
+ 
   const modalRef = React.useRef(null)
+  const desktopRef = React.useRef(null);
 
-  useGSAP(() => {
-   if (modalVisible) {
+  const modalAnimation = () => {
     const tl = gsap.timeline({ delay: .2, defaults: { opacity: 0 } });
-
+    
     tl
     .from('.text', {
       translateX: "-60px", 
@@ -135,6 +138,17 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
     .from('.btns', { 
       translateY: "60px", stagger: .15
     }, '-=.8')
+  }
+
+  useGSAP(() => {
+    if (modalVisible) {
+      modalAnimation();
+     }
+  }, { scope: desktopRef, dependencies: [modalVisible] })
+
+  useGSAP(() => {
+   if (modalVisible) {
+    modalAnimation();
    }
    
 
@@ -143,13 +157,30 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
   const handleCloseModal = () => {
 
     setModalVisible(false);
-    const timeout = setTimeout(() => {
-      swiper?.slideToLoop(0)
-      clearTimeout(timeout)
-    }, 500)
       
+  }
+
+  React.useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add({desktop: '(min-width: 768px)', mobile: "(max-width: 766px)"}, ({ conditions }) => {
+      const timeout = setTimeout(() => {
+
+        (conditions?.desktop ? desktopSwiper : mobileSwiper)?.slideToLoop(0)
+        clearTimeout(timeout)
+      }, 500)
+    })
     
+  }, [modalVisible])
+  
+  /* Desktop Modal Function */
+  const changeSlide = (event: React.MouseEvent<HTMLDivElement>) => {
     
+    const target = event.target as HTMLDivElement;
+
+    if (target.id === "next") {
+       desktopSwiper?.slideNext();
+    }
   }
 
   return (
@@ -158,15 +189,112 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
     modalVisible && <div onClick={handleCloseModal} className='fixed inset-0 z-50 bg-dark-overlay w-full h-full'></div>
     
    }
-    <div ref={modalRef} className={`${!modalVisible && "translate-y-full"} transition-all ease-out duration-700 fixed z-50 bottom-0 right-0 w-full bg-white rounded-tr-2xl rounded-tl-3xl flex flex-col gap-8 py-5`}>
-      <img onClick={handleCloseModal} draggable={false} className='select-none z-10 absolute top-3 right-3 w-[25px]' src={crossIcon} alt="" />
-       <div className='px-5'>
-          <h2 className="text-lg text font-semibold">{title}</h2>
+     {/* Modal for desktops */}
+
+     <div ref={desktopRef} className={`${!modalVisible && "scale-0 opacity-0"} ease-out hidden origin-bottom transition-all duration-700 w-[42em] fixed top-1/2 -translate-x-1/2 -translate-y-1/2 left-1/2  z-50 rounded-2xl grid-cols-[45%_55%] overflow-hidden md:grid lg:w-[55em] lg:min-h-[30em] xl:w-[65em]`}>
+
+       <img onClick={handleCloseModal} className='absolute top-3 cursor-pointer right-3 w-[25px] lg:top-5 lg:right-5' src={crossIcon} alt="" />
+
+       <div className={`${modalVisible && "backdrop-blur-sm"} relatve transition-all duration-700 delay-1000 flex bg-dark-overlay items-center w-full h-full`}>
+        <p className='absolute top-4 left-4 bg-white text-dark text-xs px-3 rounded-full font-semibold lg:text-sm xl:py-1 xl:px-4'>sample pages</p>
+           <SwiperContainer 
+             imgsSample={imgsSample}
+             setSwiper={setDesktopSwiper}
+             swiper={desktopSwiper}
+           />
+        
+         <div className='absolute bottom-5 left-5 flex gap-3 text-xs items-center text-white xl:bottom-7 xl:left-7 xl:gap-4'>
+           <div className='py-2 relative border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
+             <div id="next" onClick={changeSlide} className='absolute inset-0 z-10'></div>
+             <FontAwesomeIcon icon={faChevronLeft} />
+           </div>
+           <div id="next" onClick={changeSlide} className='py-2 border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
+             <FontAwesomeIcon icon={faChevronRight} />
+           </div>
+         </div>
+       </div>
+
+       <div className='p-8 bg-white lg:p-12 xl:pb-20'>
+         <div className='mb-4'>
+          <h2 className='text-xl font-semibold lg:text-2xl text xl:text-3xl'>{title}</h2>
+          <p className='text-sm font-semibold text-violet-dark text lg:text-base xl:text-lg'>{category}</p>
+         </div>
+
+          <p className='text-sm leading-6 lg:text-base lg:leading-8 text xl:text-lg'>{description}</p>
+
+          <ProjectBtns />
+       </div>
+       
+     </div>
+
+    
+     {/* Modal for Mobile */}
+    <div ref={modalRef} className={`${!modalVisible && "translate-y-full"} transition-all ease-out duration-700 fixed z-50 bottom-0 right-0 w-full bg-white rounded-tr-2xl rounded-tl-3xl flex flex-col gap-8 py-5 xs:rounded-tr-3xl xs:rounded-tl-3xl xs:py-8 md:hidden`}>
+      <img onClick={handleCloseModal} draggable={false} className='select-none z-10 absolute top-3 right-3 w-[25px] xs:top-5 xs:right-5' src={crossIcon} alt="" />
+       <div className='px-5 xs:px-8'>
+          <h2 className="text-lg text font-semibold sm:text-xl">{title}</h2>
           <p className='text-sm text font-semibold text-violet-dark'>{category}</p>
        </div>
-     <div>
+     <SwiperContainer 
+       imgsSample={imgsSample}
+       setSwiper={setMobileSwiper}
+       swiper={mobileSwiper}
+     />
+      
+      <div className='px-5 xs:px-8'>
+       <p className='desc text-sm sm:text-base'>
+        {description}
+       </p>
+
+       <ProjectBtns />
+      </div>
+       
+    </div>
+    
+    </>
+  )
+  
+}
+
+const ProjectBtns = () => {
+
+  return (
+    <div className='flex text-sm gap-3 mt-7 xs:gap-5 lg:text-base lg:mt-10'>
+    <button className='btns bg-dark cursor-pointer text-white py-1 px-8 rounded-sm flex gap-2 items-center xl:py-2 xl:px-10 xl:gap-3'>
+      <img className='w-[15px] lg:w-[18px]' src={rocketIcon} alt="" />
+      Visit</button>
+    <button className='btns border-2 cursor-pointer rounded-sm border-darker flex gap-2 font-semibold items-center py-1 px-8 xl:py-2 xl:px-10 xl:gap-3'>
+     <img src={githubIcom} alt="" className="w-[15px] lg:w-[18px]" />
+      Code</button>
+  </div>
+  )
+}
+
+
+const SwiperContainer:React.FC<{ imgsSample: string[], swiper: SwiperType | undefined, setSwiper: React.Dispatch<React.SetStateAction<SwiperType | undefined>> }> = ({ imgsSample, swiper, setSwiper }) => {
+
+  const [activeSlide, setActiveSlide] = React.useState<number>(0); 
+
+  return (
+    <div className='w-full'>
      <Swiper
      modules={[EffectCoverflow]}
+     breakpoints={
+      {
+        550: {
+          slidesPerView: 2
+        },
+
+        768: {
+          slidesPerView: 1.3
+        },
+
+        1024: {
+          slidesPerView: 1.3,
+          spaceBetween: 0
+        }
+      }
+     }
      effect='coverflow'
         loop={true}
         slidesPerView={1.3}
@@ -174,7 +302,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
         spaceBetween={2}
         onSlideChange={({realIndex}) => setActiveSlide(realIndex + 1)}
         grabCursor={true}
-        onSwiper={(s) => {setSwiper(s);}}
+        onSwiper={(s) => setSwiper(s)}
       >
 
         {
@@ -192,27 +320,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
         swiper={swiper}
       />
      </div>
-      
-      <div className='px-5'>
-       <p className='desc text-sm'>
-        {description}
-       </p>
-
-       <div className='flex text-sm gap-3 mt-7'>
-        <button className='btns bg-violet-dark text-white py-1 px-8 rounded-sm flex gap-2 items-center'>
-          <img className='w-[15px]' src={rocketIcon} alt="" />
-          Visit</button>
-        <button className='btns border-2 rounded-sm border-violet-darker flex gap-2 font-semibold items-center py-1 px-8 '>
-         <img src={githubIcom} alt="" className="w-[15px]" />
-          Code</button>
-      </div>
-      </div>
-       
-    </div>
-    
-    </>
   )
-  
 }
 
 export default RecentProjects

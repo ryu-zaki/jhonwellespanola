@@ -119,8 +119,8 @@ const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setAct
               
                <div className={`${!optionVisible && "scale-0"} origin-top-left transition-all duration-300 w-full absolute top-[130%] shadow-light p-2 pr-7 bg-white rounded-lg`}>
                      {
-                        btnCat.filter((item: string) => item != activeCategory).map((item) => {
-                            return <p className="p-2 pl-4" onClick={() => switchCategory(item)}>{item}</p>
+                        btnCat.filter((item: string) => item != activeCategory).map((item, index) => {
+                            return <p key={index} className="p-2 pl-4" onClick={() => switchCategory(item)}>{item}</p>
                         })
                      }
                </div>         

@@ -13,11 +13,44 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { ScrollTrigger } from 'gsap/ScrollTrigger' 
 
 function RecentProjects() {
+  
+  const projectsSectionRef = React.useRef<null | HTMLDivElement>(null);
+
+  useGSAP(() => {  
+
+  const mm = gsap.matchMedia();
+
+  mm.add({ large: '(min-width: 1024px)',small: "(max-width: 1023px)" }, ({conditions}) => {
+
+
+
+    const tl = gsap.timeline({ defaults: { opacity: 0 } });
+  
+
+  tl.from('.proj_img', {
+    translateY: conditions?.large ? "80px" : "30px", stagger: .15  
+  })
+  .from('.proj_text', {
+    translateX: "50px", stagger: .15
+  }, '-=.5')
+  .from('.stock_img', { translateX: '80px' }, '-=.2')
+
+  ScrollTrigger.create({
+    animation: tl, 
+    trigger: projectsSectionRef.current,
+    start: "top center"
+  })
+
+  })
+  
+
+  }, { scope: projectsSectionRef })
 
   return (
-    <div>
+    <div ref={projectsSectionRef}>
        <SectionTitle
          title='Recent Projects'
          description='take a look at my latest projects that reflects my skills as a programmer in a field of web development'
@@ -33,12 +66,12 @@ function RecentProjects() {
            }
        </div>
 
-       <div className='mt-10 flex flex-col gap-5 sm:flex-row lg:items-start'>
+       <div className='mt-10 flex flex-col overflow-hidden gap-5 sm:flex-row lg:items-start'>
         <div className='lg:shadow-light lg:p-8 lg:rounded-xl xl:p-10'>
-          <h3 className='text-lg poppins-semibold mb-2 xl:text-xl 2xl:text-[1.4em]'>Showcasing My Latest Work</h3>
-          <p className='xl:text-lg xl:leading-7 2xl:text-[1.4em] 2xl:leading-[1.8em]'>Each project reflects my dedication to clean design, user-focused functionality, and responsive performance. Whether it's a sleek website, an interactive UI, or a dynamic web application, these works highlight <span className='text-violet-light poppins-semibold'>my evolving</span> skills and passion for building engaging digital experiences.</p>
+          <h3 className='text-lg proj_text poppins-semibold mb-2 xl:text-xl 2xl:text-[1.4em]'>Showcasing My Latest Work</h3>
+          <p className='xl:text-lg proj_text xl:leading-7 2xl:text-[1.4em] 2xl:leading-[1.8em]'>Each project reflects my dedication to clean design, user-focused functionality, and responsive performance. Whether it's a sleek website, an interactive UI, or a dynamic web application, these works highlight <span className='text-violet-light poppins-semibold'>my evolving</span> skills and passion for building engaging digital experiences.</p>
         </div>
-        <img className='rounded-lg sm:hidden lg:block lg:w-72 xl:w-[21em] 2xl:w-[26.5em]' src={laptopImg} alt="" />
+        <img className='rounded-lg stock_img sm:hidden lg:block lg:w-72 xl:w-[21em] 2xl:w-[26.5em]' src={laptopImg} alt="" />
        </div>
     </div>
   )
@@ -65,7 +98,10 @@ const ProjectBox:React.FC<{ data: ProjectType, index: number }> = ({ data, index
        <div onClick={() => setModalVisible(true)} className="absolute inset-0 z-10"></div>
 
       <h3 className='absolute top-2 left-2 text-white poppins-semibold text-sm'>0{index}</h3>
+      <div className='proj_img'>
       <img className={`w-full h-full object-cover md:group-hover:scale-110 duration-500 transition-all`} src={imgProj} alt="" />
+      </div>
+      
 
        {/* Overlay */}
        <div className="absolute justify-center items-center inset-0 bg-linear-[0deg,#5A0F93_5%,rgba(51,51,51,0.5)_50%] text-white hidden opacity-0 translate-y-[3em] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 lg:flex">

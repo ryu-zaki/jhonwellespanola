@@ -67,11 +67,12 @@ export interface ProjectType {
     title: string,
     category: string,
     description: string,
-    imgsSample: string[]
+    imgsSample: string[],
+    source: string
 }
 
-const CreateProjectInfo = ({ imgProj, url, title, category, description, imgsSample }: ProjectType) => {
-    return ({ imgProj, url, title, category, description, imgsSample })
+const CreateProjectInfo = ({ imgProj, url, title, category, description, imgsSample, source }: ProjectType) => {
+    return ({ imgProj, url, title, category, description, imgsSample, source })
 }
 
 const Projects: ProjectType[] = [
@@ -80,7 +81,8 @@ const Projects: ProjectType[] = [
       url: "https://balai-mario.onrender.com/",
       title: "Balai Mario",
       category: "Ecommerce Website",
-      description: "A web app that enables users to order or reserve their favorite food at Balai Mario with an extensive features such as user accounts handling and online payment", imgsSample: [balaiPage1,balaiPage2, balaiPage3, balaiPage4, balaiPage5, balaiPage6]
+      description: "A web app that enables users to order or reserve their favorite food at Balai Mario with an extensive features such as user accounts handling and online payment", imgsSample: [balaiPage1,balaiPage2, balaiPage3, balaiPage4, balaiPage5, balaiPage6],
+      source: "https://github.com/ryu-zaki/Balai-Mario"
    }),
     CreateProjectInfo({ 
         imgProj: comfoodyBg,
@@ -88,33 +90,39 @@ const Projects: ProjectType[] = [
         title: "Comfoody",
         category: "Ecommerce Website",
         description: "An E-Commerce website that can handle multiple requests and orders of users. Admin can alter the items and monitor every user and order in this online shop. Visit and Explore the stunning desigs abd efficient functionalities!", imgsSample: [comPage1, comPage2, comPage3, comPage4, comPage5, comPage6]
-     }),
+        ,source: "https://github.com/ryu-zaki/Comfoody"
+      }),
      CreateProjectInfo({ 
       imgProj: raztapahanBg,
       url: "https://raztapahan-static.onrender.com/",
       title: "Raztapahan",
       category: "Franchising Website",
-      description: "A Franchising Website designed to showcase multiple franchise opportunities and attract potential partners. Business owners can easily update franchise details, customize content, and highlight brand strengths to engage future franchisees. Visit and explore the sleek design and powerful features that bring your brand’s expansion to life!", imgsSample: [raztaPage1, raztaPage2, raztaPage3, raztaPage4, raztaPage5, raztaPage6]
+      description: "A Franchising Website designed to showcase multiple franchise opportunities and attract potential partners. Business owners can easily update franchise details, customize content, and highlight brand strengths to engage future franchisees. Visit and explore the sleek design and powerful features that bring your brand’s expansion to life!", imgsSample: [raztaPage1, raztaPage2, raztaPage3, raztaPage4, raztaPage5, raztaPage6],
+      source: "https://github.com/ryu-zaki/raztapahan-static.git"
    }),
      CreateProjectInfo({ 
         imgProj: entertainmentBg,
         url: "https://entertainment-web-app-5k9k.onrender.com/",
         title: "Entertainify ",
         category: "Entertainment Web App",   
-        description: "A web app that lets users explore for the latest movies, shows, and events with ease. Packed with essential features including user account management, and an optimized data structure for a smooth entertainment experience.", imgsSample: [enterPage1, enterPage2, enterPage3, enterPage4, enterPage5, enterPage6]
-     }),
+        description: "A web app that lets users explore for the latest movies, shows, and events with ease. Packed with essential features including user account management, and an optimized data structure for a smooth entertainment experience.", imgsSample: [enterPage1, enterPage2, enterPage3, enterPage4, enterPage5, enterPage6],
+        source: "https://github.com/ryu-zaki/Entertainment-Web-App"
+       }),
      CreateProjectInfo({ 
         imgProj: homeverseBg,
         url: "https://homeverse.onrender.com/",
         title: "Homeverse",
-        category: "Real-Estate Website",description: "A real estate web app that showcases property listings, project details, and investment opportunities to potential buyers and investors. Features include detailed property information, high-quality images, location maps, and inquiry forms to help users make informed decisions.", imgsSample: [homePage1, homePage2, homePage3, homePage4, homePage5, homePage6]
+        category: "Real-Estate Website",description: "A real estate web app that showcases property listings, project details, and investment opportunities to potential buyers and investors. Features include detailed property information, high-quality images, location maps, and inquiry forms to help users make informed decisions.", imgsSample: [homePage1, homePage2, homePage3, homePage4, homePage5, homePage6],
+        source: "https://github.com/ryu-zaki/Homeverse"
      }),
      CreateProjectInfo({ 
         imgProj: weatherBg,
         url: "https://weather-web-app-sm3m.onrender.com/",
         title: "Weathery",
-        category: "Weather Web App", description: "A dynamic weather web app that provides real-time updates on temperature, wind speed, humidity, and atmospheric pressure. Includes a visual statistical graph, cloud status tracking, and an interactive calendar to help users monitor weather patterns over time with clarity and precision.", imgsSample: [weatherPage1, weatherPage2, weatherPage3, weatherPage4, weatherPage5, weatherPage6]
-     }),
+        category: "Weather Web App", description: "A dynamic weather web app that provides real-time updates on temperature, wind speed, humidity, and atmospheric pressure. Includes a visual statistical graph, cloud status tracking, and an interactive calendar to help users monitor weather patterns over time with clarity and precision.", imgsSample: [weatherPage1, weatherPage2, weatherPage3, weatherPage4, weatherPage5, weatherPage6],
+        source: "https://github.com/ryu-zaki/weather-web-app"
+       
+      }),
 ]
 
 

@@ -46,15 +46,14 @@ function RecentProjects() {
 
 const ProjectBox:React.FC<{ data: ProjectType, index: number }> = ({ data, index }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
-  const { imgProj, url, title, category, description, imgsSample } = data;
+  const { imgProj, url, title, category, description, imgsSample, source } = data;
  
-   
-  const visitSite = () => {
-    window.open(url, '_blank')
-  }
+  
   return (
     <>
     <InfoModal 
+        source={source}
+        url={url}
         title={title}
         category={category}
         modalVisible={modalVisible}
@@ -62,17 +61,16 @@ const ProjectBox:React.FC<{ data: ProjectType, index: number }> = ({ data, index
         imgsSample={imgsSample}
         description={description}
     />
-    <div className={`${index === 3 ? "col-start-2 row-start-1 row-span-2 p-3 xs:col-span-3 xs:col-start-4 lg:col-start-7" : index === 6 ? "col-span-2" : index === 1 ? "xs:col-span-3 xs:row-start-1 xs:col-start-1" : index === 2 ? "xs:row-start-2 xs:col-span-3 lg:col-start-4 lg:row-start-1" : "xs:col-span-2"} w-full relative bg-linear-[0deg,#D9D9D9_5%,#222_100%] rounded-lg lg:p-5 md:cursor-pointer group`}>
+    <div className={`${index === 3 ? "col-start-2 row-start-1 row-span-2 p-3 xs:col-span-3 xs:col-start-4 lg:col-start-7" : index === 6 ? "col-span-2" : index === 1 ? "xs:col-span-3 xs:row-start-1 xs:col-start-1" : index === 2 ? "xs:row-start-2 xs:col-span-3 lg:col-start-4 lg:row-start-1" : "xs:col-span-2"} w-full relative bg-linear-[0deg,#D9D9D9_5%,#222_100%] rounded-lg lg:p-5 md:cursor-pointer group overflow-hidden`}>
        <div onClick={() => setModalVisible(true)} className="absolute inset-0 z-10"></div>
 
       <h3 className='absolute top-2 left-2 text-white poppins-semibold text-sm'>0{index}</h3>
       <img className={`w-full h-full object-cover md:group-hover:scale-110 duration-500 transition-all`} src={imgProj} alt="" />
 
        {/* Overlay */}
-       <div className="absolute inset-0 hidden">
-        <p>{category}</p>
-        <h2>{title}</h2>
-        <button onClick={visitSite}>Visit site</button>
+       <div className="absolute justify-center items-center inset-0 bg-linear-[0deg,#5A0F93_5%,rgba(51,51,51,0.5)_50%] text-white hidden opacity-0 translate-y-[3em] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 lg:flex">
+        <p className='absolute top-2 right-2 bg-white text-dark text-[.6em] font-semibold rounded-full px-4 py-1 xl:top-4 xl:right-4 xl:text-xs translate-x-[4em] transition-all opacity-0 group-hover:opacity-100 group-hover:translate-x-0 delay-300 duration-500'>{category}</p>
+        <h2 className='xl:text-xl font-semibold translate-y-[2em] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all delay-200 duration-500'>{title}</h2>
        </div>
     </div>
     </>
@@ -106,16 +104,24 @@ interface InfoModalType {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>,
   title: string, 
   category: string,
-  description: string, imgsSample: string[]
+  description: string, imgsSample: string[], url: string, source: string
 }
 
-const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, title, category, description, imgsSample }) => {
-
+const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, title, category, description, imgsSample, url, source }) => {
+  
   const [mobileSwiper, setMobileSwiper] = React.useState<SwiperType>();
   const [desktopSwiper, setDesktopSwiper] = React.useState<SwiperType>();
- 
+  const [activeSlide, setActiveSlide] = React.useState<number>(0); 
   const modalRef = React.useRef(null)
   const desktopRef = React.useRef(null);
+  
+  const visitSite = () => {
+    window.open(url, '_blank')
+  }
+
+  const visitSource = () => {
+    window.open(source)
+  }
 
   const modalAnimation = () => {
     const tl = gsap.timeline({ delay: .2, defaults: { opacity: 0 } });
@@ -179,7 +185,9 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
     const target = event.target as HTMLDivElement;
 
     if (target.id === "next") {
-       desktopSwiper?.slideNext();
+       desktopSwiper?.slideToLoop(activeSlide > 5 ? 0 : activeSlide);
+    } else {
+      desktopSwiper?.slidePrev();
     }
   }
 
@@ -198,6 +206,8 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
        <div className={`${modalVisible && "backdrop-blur-sm"} relatve transition-all duration-700 delay-1000 flex bg-dark-overlay items-center w-full h-full`}>
         <p className='absolute top-4 left-4 bg-white text-dark text-xs px-3 rounded-full font-semibold lg:text-sm xl:py-1 xl:px-4'>sample pages</p>
            <SwiperContainer 
+             activeSlide={activeSlide}
+             setActiveSlide={setActiveSlide}
              imgsSample={imgsSample}
              setSwiper={setDesktopSwiper}
              swiper={desktopSwiper}
@@ -205,7 +215,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
         
          <div className='absolute bottom-5 left-5 flex gap-3 text-xs items-center text-white xl:bottom-7 xl:left-7 xl:gap-4'>
            <div className='py-2 relative border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
-             <div id="next" onClick={changeSlide} className='absolute inset-0 z-10'></div>
+             <div id="prev" onClick={changeSlide} className='absolute inset-0 z-10'></div>
              <FontAwesomeIcon icon={faChevronLeft} />
            </div>
            <div id="next" onClick={changeSlide} className='py-2 border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
@@ -222,7 +232,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
 
           <p className='text-sm leading-6 lg:text-base lg:leading-8 text xl:text-lg'>{description}</p>
 
-          <ProjectBtns />
+          <ProjectBtns visitSource={visitSource} visitSite={visitSite} />
        </div>
        
      </div>
@@ -236,6 +246,8 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
           <p className='text-sm text font-semibold text-violet-dark'>{category}</p>
        </div>
      <SwiperContainer 
+     activeSlide={activeSlide}
+     setActiveSlide={setActiveSlide}
        imgsSample={imgsSample}
        setSwiper={setMobileSwiper}
        swiper={mobileSwiper}
@@ -246,7 +258,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
         {description}
        </p>
 
-       <ProjectBtns />
+       <ProjectBtns visitSource={visitSource} visitSite={visitSite} />
       </div>
        
     </div>
@@ -256,14 +268,16 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
   
 }
 
-const ProjectBtns = () => {
+const ProjectBtns:React.FC<{visitSite: () => void, visitSource: () => void }> = ({ visitSite, visitSource }) => {
 
   return (
     <div className='flex text-sm gap-3 mt-7 xs:gap-5 lg:text-base lg:mt-10'>
-    <button className='btns bg-dark cursor-pointer text-white py-1 px-8 rounded-sm flex gap-2 items-center xl:py-2 xl:px-10 xl:gap-3'>
+    <button className='btns relative bg-dark cursor-pointer text-white py-1 px-8 rounded-sm flex gap-2 items-center xl:py-2 xl:px-10 xl:gap-3'>
+      <div onClick={visitSite} className="absolute z-10 inset-0"></div>
       <img className='w-[15px] lg:w-[18px]' src={rocketIcon} alt="" />
       Visit</button>
     <button className='btns border-2 cursor-pointer rounded-sm border-darker flex gap-2 font-semibold items-center py-1 px-8 xl:py-2 xl:px-10 xl:gap-3'>
+     <div onClick={visitSource} className="absolute inset-0"></div>
      <img src={githubIcom} alt="" className="w-[15px] lg:w-[18px]" />
       Code</button>
   </div>
@@ -271,9 +285,9 @@ const ProjectBtns = () => {
 }
 
 
-const SwiperContainer:React.FC<{ imgsSample: string[], swiper: SwiperType | undefined, setSwiper: React.Dispatch<React.SetStateAction<SwiperType | undefined>> }> = ({ imgsSample, swiper, setSwiper }) => {
+const SwiperContainer:React.FC<{ activeSlide: number, setActiveSlide: React.Dispatch<React.SetStateAction<number>>, imgsSample: string[], swiper: SwiperType | undefined, setSwiper: React.Dispatch<React.SetStateAction<SwiperType | undefined>> }> = ({ imgsSample, swiper, setSwiper, setActiveSlide, activeSlide }) => {
 
-  const [activeSlide, setActiveSlide] = React.useState<number>(0); 
+  
 
   return (
     <div className='w-full'>

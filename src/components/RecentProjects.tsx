@@ -66,12 +66,15 @@ function RecentProjects() {
            }
        </div>
 
-       <div className='mt-10 flex flex-col overflow-hidden gap-5 sm:flex-row lg:items-start'>
+       <div className='mt-10 flex flex-col  gap-5 sm:flex-row lg:items-start'>
         <div className='lg:shadow-light lg:p-8 lg:rounded-xl xl:p-10'>
           <h3 className='text-lg proj_text poppins-semibold mb-2 xl:text-xl 2xl:text-[1.4em]'>Showcasing My Latest Work</h3>
           <p className='xl:text-lg proj_text xl:leading-7 2xl:text-[1.4em] 2xl:leading-[1.8em]'>Each project reflects my dedication to clean design, user-focused functionality, and responsive performance. Whether it's a sleek website, an interactive UI, or a dynamic web application, these works highlight <span className='text-violet-light poppins-semibold'>my evolving</span> skills and passion for building engaging digital experiences.</p>
         </div>
+        <div className='overflow-hidden w-full lg:pb-3 lg:px-3'>
         <img className='rounded-lg stock_img sm:hidden lg:block lg:w-72 xl:w-[21em] 2xl:w-[26.5em]' src={laptopImg} alt="" />
+        </div>
+        
        </div>
     </div>
   )
@@ -216,7 +219,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
   }, [modalVisible])
   
   /* Desktop Modal Function */
-  const changeSlide = (event: React.MouseEvent<HTMLDivElement>) => {
+  const changeSlide = (event: React.MouseEvent<HTMLButtonElement>) => {
     
     const target = event.target as HTMLDivElement;
 
@@ -239,7 +242,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
 
        <img onClick={handleCloseModal} className='absolute top-3 cursor-pointer right-3 w-[25px] lg:top-5 lg:right-5' src={crossIcon} alt="" />
 
-       <div className={`${modalVisible && "backdrop-blur-sm"} relatve transition-all duration-700 delay-1000 flex bg-dark-overlay items-center w-full h-full`}>
+       <div className={`backdrop-blur-sm transition-none relatve flex bg-dark-overlay items-center w-full h-full`}>
         <p className='absolute top-4 left-4 bg-white text-dark text-xs px-3 rounded-full font-semibold lg:text-sm xl:py-1 xl:px-4'>sample pages</p>
            <SwiperContainer 
              activeSlide={activeSlide}
@@ -250,13 +253,12 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
            />
         
          <div className='absolute bottom-5 left-5 flex gap-3 text-xs items-center text-white xl:bottom-7 xl:left-7 xl:gap-4'>
-           <div className='py-2 relative border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
-             <div id="prev" onClick={changeSlide} className='absolute inset-0 z-10'></div>
+           <button id="prev" onClick={changeSlide} className='py-2 relative border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
              <FontAwesomeIcon icon={faChevronLeft} />
-           </div>
-           <div id="next" onClick={changeSlide} className='py-2 border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
+           </button>
+           <button id="next" onClick={changeSlide} className='py-2 border-2 border-white rounded-full px-3 hover:bg-white hover:text-dark hover:border-transparent transition-all duration-200 cursor-pointer hover:font-semibold'>
              <FontAwesomeIcon icon={faChevronRight} />
-           </div>
+           </button>
          </div>
        </div>
 

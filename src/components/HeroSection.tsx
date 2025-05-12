@@ -49,7 +49,7 @@ function HeroSection() {
             <span>Message</span>
           </button>
 
-          <button className='hero-btns flex overflow-hidden pr-5 p-3 px-4 bg-white rounded-md shadow-2xl cursor-pointer items-center shadow-light gap-2 relative before:absolute before:right-0 before:w-[7px] before:h-full before:bg-violet-dark xs:px-6 xl:gap-3 2xl:px-8 2xl:py-4'>
+          <button className='hero-btns flex overflow-hidden pr-5 p-3 px-4 bg-white rounded-md cursor-pointer items-center shadow-light gap-2 relative before:absolute before:right-0 before:w-[7px] before:h-full before:bg-violet-dark xs:px-6 xl:gap-3 2xl:px-8 2xl:py-4'>
             <img className='w-4 xl:w-5 2xl:w-6' src={document} alt='' />
             <span>View Resume</span>
           </button>

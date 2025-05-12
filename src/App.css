@@ -26,6 +26,94 @@
     animation-delay: .2s;
 }
 
+.pulsing-ball::before {
+   content: '';
+   position: absolute;
+   border-radius: 50%;
+   width: 50%;
+   aspect-ratio: 1/1;
+   background-color: #7B11CD;
+   opacity: 0;
+   animation: ballPulsing  1.5s ease-out infinite;
+}
+
+.flip-card {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+   /*  transform: rotateY(.5turn); */
+}
+
+.feature-overlay > div {
+    transform-style: preserve-3d;
+}
+
+.flip-card > * {
+    backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.flip-card .back__side {
+   transform: rotateY(.5turn);
+} 
+
+.flip-card .front__side > * {
+    transform: translateZ(1em);
+}
+
+.flip-card .front__side::before,
+.flip-card .back__side::before {
+
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 85%;
+    border: 2px solid #fff;
+    border-radius: 1em;
+    transform: translateZ(5em);
+}
+
+.flip-card .back__side > * {
+    transform: translateZ(5em);
+}
+
+
+
+/* .feature-overlay div:hover > .flip-card {
+    transition-delay: 0s;
+    transform: rotateY(.5turn);
+
+}
+
+.feature-overlay div:hover .front__side::before,
+.feature-overlay div:hover .back__side::before {
+     border: 2px solid #222;
+} */
+
+
+
+@keyframes ballPulsing {
+    30% {
+      scale: 2;
+      opacity: .5;
+    }
+
+    40% {
+        scale: 3;
+        opacity: .4;
+    }
+
+    50% {
+        scale: 4;
+        opacity: .3;
+    }
+
+    100% {
+        scale: 5;
+        opacity: 0;
+    }
+}
 
 
 @keyframes navBarAnim {

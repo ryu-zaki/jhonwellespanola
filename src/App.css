@@ -78,6 +78,29 @@
     transform: translateZ(5em);
 }
 
+.nav-btn a.active-link ~ .nav-icon {
+    width: 36px;
+    background-color: #E5C2FF;
+    padding: 10px;
+}
+
+.nav-btn a.active-link ~ p.navbtn {
+        font-weight: 600;
+     }
+
+@media only screen and (min-width:1024px) {
+
+    .nav-btn a ~ p.navbtn:before {
+       transform: scaleX(0);
+
+     }
+    
+
+     .nav-btn a.active-link ~ p.navbtn::before {
+       transform: scaleX(1);
+
+     }
+ }
 
 
 /* .feature-overlay div:hover > .flip-card {

@@ -8,24 +8,45 @@ import UpperNavigation from './components/UpperNavigation'
 import Certificates from './components/Certificates'
 import GoalsSection from './components/GoalsSection'
 import Footer from './components/Footer'
+import { Element } from 'react-scroll'
 
 function App() {
 
   return (
-    <>
-    <div className='container mx-auto px-2 text-dark lg:px-6 2xl:px-10'>
+    
+    <div className='overflow-x-hidden'>
+ <div className='container mx-auto px-2 text-dark lg:px-6 2xl:px-10'>
       <UpperNavigation />
       <div className='flex flex-col gap-16 md:gap-28 lg:gap-32 xl:gap-48'> 
-       <HeroSection />
-       <ServicesSection />
-       <RecentProject />
-       <PersonalInfo />
-       <Certificates />
-       <GoalsSection />
+       <Element name="home" className="w-full">
+           <HeroSection />
+       </Element>
+       
+       <Element name="services">
+         <ServicesSection />
+       </Element>
+
+       <Element name="recent-projects">
+         <RecentProject />
+       </Element>
+
+       <Element name="personal-info">
+         <PersonalInfo />
+       </Element>
+
+       <Element name="certificates">
+         <Certificates />
+       </Element>
+
+      <Element name="goals">
+        <GoalsSection />    
+      </Element>
       </div>
     </div>
     <Footer />
-    </>
+    </div>
+   
+    
     
   )
 }

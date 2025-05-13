@@ -1,8 +1,10 @@
 import logoLight from '../assets/UpperNav/logo-light.png';
+import logoDarkLG from '../assets/UpperNav/logo-dark-large.png';
 import crossLight from '../assets/UpperNav/cross-light.png';
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import type { Navigation } from '../static data/Navigations';
 
 /* darkmode Images */
 import moonActive from '../assets/UpperNav/moon-active.png';
@@ -12,6 +14,7 @@ import sunInactive from '../assets/UpperNav/sun-inactive.png';
 import upperNavigations from '../static data/Navigations';
 import { useTheme } from './ThemeContext';
 import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { scroller, Link } from 'react-scroll'
 
 
 function UpperNavigation() {
@@ -19,8 +22,8 @@ function UpperNavigation() {
     const [sidenavVisible, setSidenavVisible] = React.useState(false);
     const [navFixed, setNavFixed] = React.useState(false);
     const navbarContainer = React.useRef(null);
-    const {theme, toggleTheme} = useTheme(); 
-
+    const {theme, toggleTheme} = useTheme();
+  
     React.useEffect(() => {
      
      if (!navbarContainer.current) return;
@@ -55,11 +58,16 @@ function UpperNavigation() {
        
 
         <NavigationBar 
-          navFixed={navFixed}
-          theme={theme} 
-          toggleTheme={toggleTheme} 
-          sidenavVisible={sidenavVisible} 
-          visibility="hidden lg:flex" 
+          setSidenavVisible={setSidenavVisible}
+          data={{
+          navFixed,
+          theme,
+          toggleTheme, 
+          sidenavVisible,
+          visibility: "hidden lg:flex"
+          }
+          }
+           
         />
 
     </div>
@@ -95,38 +103,55 @@ function UpperNavigation() {
    
      
      {
-        sidenavVisible && <div className='z-20 fixed inset-0 bg-dark-overlay lg:hidden'>
+        sidenavVisible && <div onClick={() => setSidenavVisible(false)} className='z-20 fixed inset-0 bg-dark-overlay lg:hidden'>
         <img onClick={() => setSidenavVisible(false)} draggable={false} className='absolute select-none w-4 right-4 top-4' src={crossLight} alt="" />
      </div>
      }
      
      <NavigationBar 
-     navFixed={navFixed}
-     theme={theme} 
-     toggleTheme={toggleTheme} 
-     sidenavVisible={sidenavVisible} 
-     visibility="flex lg:hidden" />
+     setSidenavVisible={setSidenavVisible}
+     data={{
+          navFixed,
+          theme,
+          toggleTheme, 
+          sidenavVisible,
+          visibility: "flex lg:hidden"
+          }
+          }
+      />
+     
     </>
     )
 }
 
 
-const NavigationBtn = ({data, navFixed}: { data: {imgSrc: string; category: string}, navFixed: boolean  }) => {
-    
+const NavigationBtn:React.FC<{ setSidenavVisible: React.Dispatch<React.SetStateAction<boolean>>, data: Navigation, navFixed: boolean  }> = ({data, navFixed, setSidenavVisible}) => {
+    const {imgSrc, category, routeID} = data;
 
-    const {imgSrc, category} = data;
+    const handleSlidePage = () => {
+      setSidenavVisible(false)
+     scroller.scrollTo(routeID, { offset: -150, smooth: 'eastOut', delay: 0 } );
+     
+    }
 
     return (
-        <div className='flex items-center gap-3'>
-          {
-            category === "Home" ? (
-              <div className='w-9 bg-violet-overlay p-[10px] rounded-full lg:hidden'>
+        <div className='nav-btn group flex relative cursor-pointer items-center gap-3'>
+
+          <Link 
+            offset={-150}
+            to={routeID}
+            spy={true}
+            activeClass="active-link"
+            className="hidden"
+          />
+
+          <div onClick={handleSlidePage} className="absolute inset-0 z-10 "></div>
+
+          <div className={`w-4 nav-icon rounded-full lg:hidden`}>
                 <img src={imgSrc} alt="" />
-              </div>
-            ) : <img className='w-4 lg:hidden' src={imgSrc} alt="" />
-          }
+          </div>
           
-          <p className={`${category === "Home" && "text-dark poppins-semibold lg:relative lg:before:absolute lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark"} navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1.08em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
+          <p className={`text-dark transition-all lg:relative lg:before:absolute lg:before:transition-all lg:before:duration-200 lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark  origin-left navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1.08em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
         </div>
     )
 }
@@ -139,10 +164,15 @@ interface NavigationProps {
   navFixed: boolean
 }
 
-const NavigationBar: React.FC<NavigationProps> = ({sidenavVisible, theme, toggleTheme, visibility, navFixed}) => {
-
+const NavigationBar: React.FC<{ data: NavigationProps, setSidenavVisible: React.Dispatch<React.SetStateAction<boolean>>,}> = ({data, setSidenavVisible}) => {
+  const {sidenavVisible, theme, toggleTheme, visibility, navFixed} = data;
   return (
-    <nav className={`${!sidenavVisible && "-translate-x-full lg:-translate-x-0"} ${visibility} fixed bg-white top-0 bottom-0 left-0 w-11/12 max-w-[16em] p-5 flex-col gap-10 z-20 lg:relative lg:flex-row lg:justify-between lg:container lg:w-full lg:px-0 lg:mx-auto ${navFixed ? "lg:transition-all duration-700 lg:py-2" : "lg:transition-none"} transition-all duration-700`}>
+    <>
+    <div className={`${!sidenavVisible && "-translate-x-full"} fixed flex justify-center h-screen items-center top-0 left-0 w-11/12 max-w-[16em] bg-dark bottom-0 z-20 transition-all duration-700 lg:hidden`}>
+      <img className={"abssolute w-[12em]"} src={logoDarkLG} alt="" />
+    </div>
+
+    <nav className={`${!sidenavVisible ? "-translate-x-full lg:-translate-x-0" : "delay-300"} ${visibility} fixed bg-white top-0 bottom-0 left-0 w-11/12 max-w-[16em] p-5 flex-col gap-10 z-20 lg:relative lg:flex-row lg:justify-between lg:container lg:w-full lg:px-0 lg:mx-auto ${navFixed ? "lg:transition-all duration-700 lg:py-2" : "lg:transition-none"} transition-all duration-700`}>
     
         <div className='flex gap-2 items-center relative before:absolute before:w-full before:h-[2px] before:bg-light-gray before:bottom-0 pb-4 lg:before:hidden lg:gap-3 lg:pb-0'>
             <img className='w-7 xl:w-9' src={logoLight} alt="" />
@@ -158,7 +188,9 @@ const NavigationBar: React.FC<NavigationProps> = ({sidenavVisible, theme, toggle
                
               {
                 upperNavigations.map((data, index) => {
-                    return <NavigationBtn navFixed={navFixed} data={data} key={index} />
+                    return <NavigationBtn
+                    setSidenavVisible={setSidenavVisible}
+                    navFixed={navFixed} data={data} key={index} />
                 })
               }
                 
@@ -185,6 +217,7 @@ const NavigationBar: React.FC<NavigationProps> = ({sidenavVisible, theme, toggle
         </div>
         
     </nav>
+    </>
   )
 }
 

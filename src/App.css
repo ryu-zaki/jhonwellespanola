@@ -84,6 +84,10 @@
     padding: 10px;
 }
 
+.nav-btn a.active-link ~ .nav-icon.Dark {
+   background-color: #7B11CD;
+}
+
 .nav-btn a.active-link ~ p.navbtn {
         font-weight: 600;
      }

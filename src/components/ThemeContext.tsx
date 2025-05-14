@@ -2,25 +2,34 @@ import React, { createContext, ReactNode, useContext } from 'react'
 
 interface ThemeProviderValues {
    theme: string,
-   toggleTheme: () => void
+   toggleTheme: () => void, highlightClr: string
 }
 
-const ComponentContext = createContext<ThemeProviderValues>({ theme: "", toggleTheme: () => {} });
+const ComponentContext = createContext<ThemeProviderValues>({ theme: "", toggleTheme: () => {}, highlightClr: "" });
  
 interface ThemeProviderProps {
-    children: ReactNode
+    children: ReactNode, highlightClr: string
 }
 
 const ThemeContext: React.FC<ThemeProviderProps> = ({children}) => {
 
-  const [theme, setTheme] = React.useState<"Light" | "Dark">("Light");
+  const [theme, setTheme] = React.useState<"Light" | "Dark">("Dark");
 
   const toggleTheme = () => {
     setTheme(prev => prev === "Light" ? "Dark" : "Light");
   }
 
+  const [highlightClr, setHighlightClr] = React.useState("");
+  
+  React.useEffect(() => {
+
+setHighlightClr(theme === "Dark" ? "text-violet-light" : "text-violet-dark")
+
+  }, [theme]);
+
   return (
-    <ComponentContext.Provider value={{ theme, toggleTheme }}>
+    <ComponentContext.Provider value={{ theme, toggleTheme, highlightClr }}>
+        
         {
             children
         }

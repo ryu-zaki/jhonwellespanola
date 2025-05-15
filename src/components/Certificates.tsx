@@ -1,10 +1,10 @@
 import React from 'react'
 import SectionTitle from './SectionTitle'
-import { CertData, FlexDirection } from '../static data/Certificates'
-import certificatesData from '../static data/Certificates'
+import { CertData, FlexDirection } from '../static data/Certificates.tsx'
+import certificatesData from '../static data/Certificates.tsx'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from './ThemeContext'
 
 function Certificates() {

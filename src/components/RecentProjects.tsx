@@ -11,7 +11,7 @@ import 'swiper/css'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ScrollTrigger } from 'gsap/ScrollTrigger' 
 import { useTheme } from './ThemeContext';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -241,8 +241,8 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
      {/* Modal for desktops */}
 
      <div ref={desktopRef} className={`${!modalVisible && "scale-0 opacity-0"} ease-out hidden origin-bottom transition-all duration-700 w-[42em] fixed top-1/2 -translate-x-1/2 -translate-y-1/2 left-1/2  z-50 rounded-2xl grid-cols-[45%_55%] overflow-hidden md:grid lg:w-[55em] lg:min-h-[30em] xl:w-[65em]`}>
-
-       <img onClick={handleCloseModal} className='absolute top-3 cursor-pointer right-3 w-[25px] lg:top-5 lg:right-5' src={crossIcon} alt="" />
+       
+       <FontAwesomeIcon onClick={handleCloseModal} className={`${theme === "Dark" ? "text-white" : "text-dark"} z-10 absolute top-3 cursor-pointer right-3 text-[25px] lg:top-5 lg:right-5`} icon={faXmark} />
 
        <div className={`backdrop-blur-sm transition-none relatve flex bg-dark-overlay items-center w-full h-full`}>
         <p className='absolute top-4 left-4 bg-white text-dark text-xs px-3 rounded-full font-semibold lg:text-sm xl:py-1 xl:px-4'>sample pages</p>

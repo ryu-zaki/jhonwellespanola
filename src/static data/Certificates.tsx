@@ -1,6 +1,6 @@
 import responsiveCert from '../assets/Certificates/Responsive web design.webp';
 import dataStructure from '../assets/Certificates/Data Structures.webp';
-import { dataAlgoComp, responsivDesignComp } from './CustomComponents';
+import { DataAlgoComp, ResponsivDesignComp } from './CustomComponents.tsx';
 import { ReactElement } from 'react';
 
 interface ScopeData {
@@ -20,9 +20,7 @@ interface CertData {
 }
 
 
-
-
-const CreateCertData = ({ img, description, scope, direction }: CertData) => {
+const createCertData = ({ img, description, scope, direction }: CertData) => {
 
     return ({
         img, description, scope, direction
@@ -30,9 +28,9 @@ const CreateCertData = ({ img, description, scope, direction }: CertData) => {
 }
 
 const certificatesData = [
-    CreateCertData({
+    createCertData({
         img: responsiveCert, 
-        description: responsivDesignComp,
+        description: <ResponsivDesignComp />,
         direction: FlexDirection.Normal,
         scope: [
            {
@@ -45,9 +43,9 @@ const certificatesData = [
             title: "Flexbox & CSS Grid"
            }, 
         ]}),
-    
-        CreateCertData({img: dataStructure, 
-             description: dataAlgoComp,
+        
+        createCertData({img: dataStructure, 
+             description: <DataAlgoComp />,
              direction: FlexDirection.Reverse,
              scope: [
                 {

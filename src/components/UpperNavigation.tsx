@@ -27,6 +27,10 @@ function UpperNavigation() {
     const navbarContainer = React.useRef(null);
     const {theme, toggleTheme, highlightClr } = useTheme();
   
+    const handleSocMed = (Link: string) => {
+      window.open(Link, "_blank")
+    }
+
     React.useEffect(() => {
      
      if (!navbarContainer.current) return;
@@ -93,9 +97,9 @@ function UpperNavigation() {
            </div>
 
            <div className='flex gap-4 items-center 2xl:gap-7'>
-              <FontAwesomeIcon icon={faFacebook} />
-              <FontAwesomeIcon icon={faInstagram} />
-              <FontAwesomeIcon icon={faYoutube} />
+              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.facebook.com/jhonwell.espanola")} icon={faFacebook} />
+              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.instagram.com/mqkie_/")} icon={faInstagram} />
+              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.youtube.com/@12-2aespanolajhonwella.6")} icon={faYoutube} />
            </div>
         </div>
         </div>

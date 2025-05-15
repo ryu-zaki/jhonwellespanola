@@ -19,7 +19,7 @@ export const CreateServiceData = (imgSrc: string, category: string) => {
 
 
 const services: ServiceData[] = [
-    CreateServiceData(frontend, "Frontend Development"),
+    CreateServiceData(frontend, "Static Websites"),
     CreateServiceData(ecommerce, "Ecommerce Websites"),
     CreateServiceData(mobileResponsive, "Mobile Responsive"),
     CreateServiceData(realEstate, "Real Estate Websites"),

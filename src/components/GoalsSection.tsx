@@ -5,11 +5,12 @@ import SectionTitle from './SectionTitle';
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import React from 'react';
+import { useTheme } from './ThemeContext';
 
 function GoalsSection() {
 
   const goalsSecRef = React.useRef(null);
-
+  const {highlightClr} = useTheme();
   useGSAP(() => {
 
     const tl = gsap.timeline({ defaults: { opacity: 0 } });
@@ -39,7 +40,7 @@ function GoalsSection() {
           </div>
          
           <div className='relative text flex justify-center  md:justify-start'>
-          <p className='text-sm text-center leading-6 xs:text-base sm:leading-7 md:text-left md:leading-8 xl:text-lg xl:leading-9 2xl:text-[1.4em] 2xl:leading-[2.2em]'>As a dedicated Web developer, my primary goal is to deliver <span className='poppins-semibold text-violet-dark'>exceptional value</span> to various businesses and corporations through my expertise. I am determined to establish an agency and community that not only offers assistance but also empowers clients to enhance their <span className='poppins-semibold text-violet-dark'>online presence</span> effectively.</p>
+          <p className='text-sm text-center leading-6 xs:text-base sm:leading-7 md:text-left md:leading-8 xl:text-lg xl:leading-9 2xl:text-[1.4em] 2xl:leading-[2.2em]'>As a dedicated Web developer, my primary goal is to deliver <span className={`poppins-semibold ${highlightClr}`}>exceptional value</span> to various businesses and corporations through my expertise. I am determined to establish an agency and community that not only offers assistance but also empowers clients to enhance their <span className={`poppins-semibold ${highlightClr}`}>online presence</span> effectively.</p>
           <div className='absolute line md:origin-left h-[2px] w-[8em] bg-dark -bottom-3 sm:w-[12em] md:w-[6em] lg:-bottom-5 lg:h-[3px] xl:w-[8em]'></div>
           </div>
           

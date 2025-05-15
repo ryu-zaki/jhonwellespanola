@@ -5,7 +5,6 @@ import Projects, { ProjectType } from '../static data/Projects';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import rocketIcon from '../assets/Projects/rocket-lunch.png';
-import githubIcom from '../assets/Projects/github.png';
 import crossIcon from '../assets/Projects/cross-small.png'
 import { EffectCoverflow } from 'swiper/modules';
 import 'swiper/css'

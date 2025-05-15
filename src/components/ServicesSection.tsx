@@ -5,7 +5,6 @@ import infoIcon from '../assets/Services/info-violet.png';
 import infoIconWhite from '../assets/Services/info-white.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faXmark } from "@fortawesome/free-solid-svg-icons";
-import chevIcon from '../assets/Services/angle-small-down.png';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'

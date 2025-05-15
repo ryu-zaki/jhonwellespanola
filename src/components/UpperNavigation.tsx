@@ -154,7 +154,7 @@ const NavigationBtn:React.FC<{ setSidenavVisible: React.Dispatch<React.SetStateA
                 <img src={theme === "Dark" ? darkImg : imgSrc} alt="" />
           </div>
           
-          <p className={`${theme === "Dark" ? "text-white" : "text-dark"}  transition-all lg:relative lg:before:absolute lg:before:transition-all lg:before:duration-200 lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark  origin-left navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1.08em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
+          <p className={`${theme === "Dark" ? "text-white" : "text-dark"} lg:relative transition-all lg:transition-none lg:before:absolute lg:before:transition-all lg:before:duration-200 lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark  origin-left navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1.08em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
         </div>
     )
 }
@@ -177,9 +177,11 @@ const NavigationBar: React.FC<{ data: NavigationProps, setSidenavVisible: React.
     <div className={`${!sidenavVisible && "-translate-x-full"} fixed flex justify-center h-screen items-center top-0 left-0 w-11/12 max-w-[16em] ${theme === "Dark" ? "bg-[#f4f4f4]" :'bg-dark'} bottom-0 z-20 transition-all duration-700 lg:hidden`}>
       <img className={"abssolute w-[12em]"} src={theme === "Dark" ? logoLightLG : logoDarkLG} alt="" />
     </div>
+ 
+    <nav className={`${!sidenavVisible ? "-translate-x-full lg:-translate-x-0" : "delay-300"} ${visibility} fixed top-0 bottom-0 left-0 w-11/12 max-w-[16em] bg-white p-5 flex-col gap-10 z-20 lg:relative lg:flex-row lg:justify-between lg:container lg:w-full lg:px-0 lg:mx-auto ${navFixed ? `lg:transition-all duration-700 lg:py-2 lg:bg-transparent` : "lg:transition-none lg:bg-transparent"} overflow-hidden transition-all duration-700`}>
+        
+        <div className={`${theme === "Dark" ? "scale-[25]" : "scale-0"} absolute w-[9vh] left-0 aspect-square rounded-full bottom-0 -z-10 bg-[#222] transition-all duration-1000 translate-y-1/2 ease-in-out -translate-x-1/2 lg:hidden`}></div>
 
-    <nav className={`${!sidenavVisible ? "-translate-x-full lg:-translate-x-0" : "delay-300"} ${visibility} fixed ${theme === "Dark" ? "bg-[#222]" : "bg-white"} top-0 bottom-0 left-0 w-11/12 max-w-[16em] p-5 flex-col gap-10 z-20 lg:relative lg:flex-row lg:justify-between lg:container lg:w-full lg:px-0 lg:mx-auto ${navFixed ? "lg:transition-all duration-700 lg:py-2" : "lg:transition-none"} transition-all duration-700`}>
-    
         <div className='flex gap-2 items-center relative before:absolute before:w-full before:h-[2px] before:bg-light-gray before:bottom-0 pb-4 lg:before:hidden lg:gap-3 lg:pb-0'>
             <img className='w-7 xl:w-9' src={ theme === "Dark" ? logoDark : logoLight} alt="" />
 
@@ -215,7 +217,7 @@ const NavigationBar: React.FC<{ data: NavigationProps, setSidenavVisible: React.
                        <div onClick={toggleTheme} className='absolute inset-0 z-10'></div>
                     </div>
 
-                    <p className={`text-xs poppins-semibold ${highlightClr} text-violet-dark lg:hidden'`}>{theme} Mode</p>
+                    <p className={`text-xs poppins-semibold ${highlightClr} text-violet-dark lg:hidden`}>{theme} Mode</p>
                 </div>
                
             </div>

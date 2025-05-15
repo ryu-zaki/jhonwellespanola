@@ -19,9 +19,9 @@ function App() {
     
     <div className='overflow-x-hidden'>
       
-      <div className={`${theme === "Dark" && "scale-[3]"} fixed w-[100vh] rounded-full translate-y-1/2 aspect-square bg-dark -z-20 bottom-0 left-1/2 -translate-x-1/2`}></div>
+      <div className={`${theme === "Dark" ? "scale-[3]" : "scale-0"} fixed tra w-[95vh] rounded-full translate-y-1/2 aspect-square bg-dark transition-all duration-1000 -z-20 bottom-0 left-1/2 -translate-x-1/2`}></div>
 
- <div className={`container mx-auto px-2 ${theme === "Dark" ? "text-white" : "text-dark "} lg:px-6 2xl:px-10`}>
+       <div className={`container mx-auto px-2 ${theme === "Dark" ? "text-white" : "text-dark "} lg:px-6 2xl:px-10`}>
       <UpperNavigation />
       <div className='flex flex-col gap-16 md:gap-28 lg:gap-32 xl:gap-48'> 
        <Element name="home" className="w-full">

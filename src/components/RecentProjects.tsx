@@ -14,6 +14,8 @@ import gsap from 'gsap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { ScrollTrigger } from 'gsap/ScrollTrigger' 
+import { useTheme } from './ThemeContext';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function RecentProjects() {
   
@@ -153,6 +155,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
   const [activeSlide, setActiveSlide] = React.useState<number>(0); 
   const modalRef = React.useRef(null)
   const desktopRef = React.useRef(null);
+  const {theme} = useTheme();
   
   const visitSite = () => {
     window.open(url, '_blank')
@@ -262,7 +265,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
          </div>
        </div>
 
-       <div className='p-8 bg-white lg:p-12 xl:pb-20'>
+       <div className={`p-8 ${theme === "Dark" ? "bg-[#222]" : "bg-white"} lg:p-12 xl:pb-20`}>
          <div className='mb-4'>
           <h2 className='text-xl font-semibold lg:text-2xl text xl:text-3xl'>{title}</h2>
           <p className='text-sm font-semibold text-violet-dark text lg:text-base xl:text-lg'>{category}</p>
@@ -277,7 +280,7 @@ const InfoModal:React.FC<InfoModalType> = ({ modalVisible, setModalVisible, titl
 
     
      {/* Modal for Mobile */}
-    <div ref={modalRef} className={`${!modalVisible && "translate-y-full"} transition-all ease-out duration-700 fixed z-50 bottom-0 right-0 w-full bg-white rounded-tr-2xl rounded-tl-3xl flex flex-col gap-8 py-5 xs:rounded-tr-3xl xs:rounded-tl-3xl xs:py-8 md:hidden`}>
+    <div ref={modalRef} className={`${!modalVisible && "translate-y-full"} transition-all ease-out duration-700 fixed z-50 bottom-0 right-0 w-full ${theme === "Dark" ? "bg-[#222]" : "bg-white"} rounded-tr-2xl rounded-tl-3xl flex flex-col gap-8 py-5 xs:rounded-tr-3xl xs:rounded-tl-3xl xs:py-8 md:hidden`}>
       <img onClick={handleCloseModal} draggable={false} className='select-none z-10 absolute top-3 right-3 w-[25px] xs:top-5 xs:right-5' src={crossIcon} alt="" />
        <div className='px-5 xs:px-8'>
           <h2 className="text-lg text font-semibold sm:text-xl">{title}</h2>
@@ -316,7 +319,7 @@ const ProjectBtns:React.FC<{visitSite: () => void, visitSource: () => void }> = 
       Visit</button>
     <button className='btns border-2 cursor-pointer rounded-sm border-darker flex gap-2 font-semibold items-center py-1 px-8 xl:py-2 xl:px-10 xl:gap-3'>
      <div onClick={visitSource} className="absolute inset-0"></div>
-     <img src={githubIcom} alt="" className="w-[15px] lg:w-[18px]" />
+     <FontAwesomeIcon className="text-[15px] lg:text-[18px]" icon={faGithub} />
       Code</button>
   </div>
   )

@@ -4,11 +4,12 @@ import categorizeServices, { ServiceData } from "../static data/CategorizeServic
 import infoIcon from '../assets/Services/info-violet.png';
 import infoIconWhite from '../assets/Services/info-white.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faXmark } from "@fortawesome/free-solid-svg-icons";
 import chevIcon from '../assets/Services/angle-small-down.png';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
+import { useTheme } from "./ThemeContext";
 
 interface InfoModalProps {
     info: string;
@@ -107,6 +108,8 @@ const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setAct
         setIsClick(true);
         setActiveCategory(item);
     }
+
+    const {theme} = useTheme();
     
 
     return (
@@ -114,10 +117,11 @@ const CategorySwitch:React.FC<{ activeCategory: string, btnCat: string[], setAct
                <div className="flex relative items-center p-2 px-4 gap-2">
                  <div onClick={() => setOptionVisible(prev => !prev)} className="z-10 absolute inset-0"></div>
                  <p className="poppins-semibold">{activeCategory}</p>
-                 <img className={`${!optionVisible && "-rotate-90" } transition-all duration-200 w-6`} src={chevIcon} alt="" />
+                 <FontAwesomeIcon className={`${!optionVisible && "-rotate-90" } transition-all duration-200 w-6`} icon={faChevronDown} />
+                 
                </div>
               
-               <div className={`${!optionVisible && "scale-0"} origin-top-left transition-all duration-300 w-full absolute top-[130%] shadow-light p-2 pr-7 bg-white rounded-lg`}>
+               <div className={`${!optionVisible && "scale-0"} origin-top-left transition-all duration-300 w-full absolute top-[130%] shadow-light p-2 pr-7 ${theme === "Dark" ? "bg-[#444]" : "bg-white"} rounded-lg`}>
                      {
                         btnCat.filter((item: string) => item != activeCategory).map((item, index) => {
                             return <p key={index} className="p-2 pl-4" onClick={() => switchCategory(item)}>{item}</p>
@@ -135,10 +139,11 @@ const ServiceBox: React.FC<{ data: ServiceData, index: number}> = ({ data, index
     
     const { image, serviceTitle, info } = data;
     const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+    const {theme} = useTheme();
 
     return (
         <>
-         <div className={`${index === 1 ? "center_proj" : "side_proj"} w-[48%] relative origin-top service-box overflow-hidden rounded-md lg:rounded-xl`}>
+         <div className={`${index === 1 ? "center_proj" : "side_proj"} w-[48%] relative origin-top service-box overflow-hidden rounded-md ${theme === "Dark" && "bg-gray"} lg:rounded-xl`}>
            <img className="w-full aspect-[14/12]  xs:aspect-[14/9]" src={image} alt="" />
            
            <div className="absolute text-white inset-0 bg-dark-overlay flex flex-col items-end justify-between p-2 xs:p-6 lg:p-8">
@@ -156,15 +161,17 @@ const ServiceBox: React.FC<{ data: ServiceData, index: number}> = ({ data, index
 }
 
 const InfoModal: React.FC<InfoModalProps> = ({ info, title, setModalVisible, modalVisible }) => {
-    
+  
+  const {theme, highlightClr} = useTheme();
+
     return (
         <>
          {
             modalVisible && <div onClick={() => setModalVisible(false)} className="fixed inset-0 bg-dark-overlay z-20"></div>
          } 
 
-          <div className={`${modalVisible ? "-translate-y-1/2" : "translate-y-0 scale-0 opacity-0"} fixed w-11/12 p-5 transition-all duration-700 container overflow-hidden py-8 bg-white top-1/2 left-1/2 -translate-x-1/2  z-20 rounded-xl before:absolute before:bottom-0 before:left-0 before:h-2 before:bg-gray-400 before:w-full xs:px-7 sm:max-w-[620px] sm:py-10 lg:before:h-3 lg:pb-14 2xl:max-w-[700px] 2xl:px-10`}>
-           <div className={`${!modalVisible && "opacity-0 -translate-y-[10px]"} transition-all delay-[300ms] duration-700 flex gap-2 items-center text-violet-dark sm:gap-3`}>
+          <div className={`${modalVisible ? "-translate-y-1/2" : "translate-y-0 scale-0 opacity-0"} fixed w-11/12 p-5 transition-all duration-700 container overflow-hidden py-8 ${theme === "Dark" ? "bg-[#222]" : "bg-white"} top-1/2 left-1/2 -translate-x-1/2  z-20 rounded-xl before:absolute before:bottom-0 before:left-0 before:h-2  ${theme === "Dark" ? "before:bg-[#666]" : "before:bg-gray-400"} before:w-full xs:px-7 sm:max-w-[620px] sm:py-10 lg:before:h-3 lg:pb-14 2xl:max-w-[700px] 2xl:px-10`}>
+           <div className={`${!modalVisible && "opacity-0 -translate-y-[10px]"} transition-all delay-[300ms] duration-700 flex gap-2 items-center ${highlightClr} sm:gap-3`}>
                 <img draggable={false} className="w-5 sm:w-6 2xl:w-8" src={infoIcon} alt="" />
                 <h3 className="poppins-semibold xs:text-lg sm:text-xl 2xl:text-[1.8em]">{title}</h3>
             </div>

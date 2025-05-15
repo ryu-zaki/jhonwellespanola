@@ -3,11 +3,12 @@
 import instagramIcon from '../assets/Footer/instagram.png';
 import facebookIcon from '../assets/Footer/facebook.png';
 import linkedinIcon from '../assets/Footer/linkedin.png';
+import { useTheme } from './ThemeContext';
 
 function Footer() {
-
+  const {theme} = useTheme();
   return (
-    <footer className='bg-dark mt-16 pt-10 text-white text-center text-sm xs:text-base xl:text-lg 2xl:text-[1.4em] 2xl:pt-16 2xl:mt-32'>
+    <footer className={`${theme === "Dark" ? "bg-[#222]" : "bg-dark"} mt-16 pt-10 text-white text-center text-sm xs:text-base xl:text-lg 2xl:text-[1.4em] 2xl:pt-16 2xl:mt-32`}>
         <div className='container mx-auto flex flex-col gap-5 px-2 xl:max-w-[1024px] 2xl:gap-8'>
         <div>
           <h2 className='text-base poppins-semibold xs:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl'>Jhonwell Espanola</h2>

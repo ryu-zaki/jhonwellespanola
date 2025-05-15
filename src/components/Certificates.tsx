@@ -5,6 +5,7 @@ import certificatesData from '../static data/Certificates'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { useTheme } from './ThemeContext'
 
 function Certificates() {
   
@@ -37,7 +38,7 @@ function Certificates() {
 const CertificateBox: React.FC<CertData> = ({ img, description, scope, direction }) => {
   
     const certRef = React.useRef(null);
-  
+    const {theme} = useTheme();
     useGSAP(() => {
 
      const tl = gsap.timeline({ defaults: { opacity: 0 } });
@@ -65,10 +66,10 @@ const CertificateBox: React.FC<CertData> = ({ img, description, scope, direction
           
             {description}
 
-           <div className='details shadow-2xs mt-10 bg-white shadow-light p-5 rounded-lg space-y-5 sm:p-8 md:mt-5 xl:p-10 xl:mt-14'>
+           <div className={`details mt-10 ${theme === "Dark" ? "bg-[#222]" : "bg-white"} shadow-light p-5 rounded-lg space-y-5 sm:p-8 md:mt-5 xl:p-10 xl:mt-14`}>
            {
                 scope.map(({title, subDescription}, index) => {
-                    return <div className='bg-white' key={index}>
+                    return <div key={index}>
                         <h3 className='poppins-semibold mb-2'>{title}</h3>
                         
                         <p className='relative pl-5 flex items-center before:absolute before:w-2 before:aspect-square before:bg-violet-dark before:rounded-full before:left-0'>{subDescription}</p>

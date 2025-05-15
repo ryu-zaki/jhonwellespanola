@@ -5,6 +5,7 @@ import SkillSet from '../static data/SkillSet'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useTheme } from './ThemeContext'
 
 function PersonalInfo() {
   
@@ -77,6 +78,7 @@ const SkillsSection = () => {
   
   const [largeImgClass, setLargeImgClass] = React.useState<string>('/src/assets/Personal%20Info/Skills/Large/javascript-icon.png');
   const skilsRef = React.useRef(null);
+  const {theme} = useTheme();
 
   const handleChangeBg = (imgLarge: string) => {
     setLargeImgClass(imgLarge)
@@ -124,7 +126,7 @@ const SkillsSection = () => {
   return (
     <div ref={skilsRef} className='mt-10 xl:mt-16'>
       <div className='relative flex w-full items-center'>
-         <h2 className='text-center title w-full font-semibold text-xl relative sm:text-2xl md:text-left md:bg-white md:w-fit md:pr-5 xl:text-3xl 2xl:text-4xl'>My Skills</h2>
+         <h2 className={`text-center title w-full font-semibold text-xl relative sm:text-2xl md:text-left ${theme === "Dark" ? "md:bg-dark" : "md:bg-white"} md:w-fit md:pr-5 xl:text-3xl 2xl:text-4xl`}>My Skills</h2>
          <div className="hidden line origin-left absolute -z-10 left-0 bg-[#ccc] h-[2px] w-full md:block lg:w-[97%]"></div>
 
          {/* Pulsing Ball */}
@@ -132,7 +134,7 @@ const SkillsSection = () => {
       </div>
       
 
-      <div className='shadow-light overflow-hidden relative flex flex-col gap-7 mt-5 p-5 rounded-xl pb-32 sm:p-10 sm:pb-32 md:pb-10 lg:pr-[18em] lg:gap-10 lg:pb-24 xl:mt-10 xl:gap-12 xl:p-12 xl:pb-28 2xl:p-16 2xl:pb-28'>
+      <div className={`${theme === "Dark" && "bg-[#222]"} shadow-light overflow-hidden relative flex flex-col gap-7 mt-5 p-5 rounded-xl pb-32 sm:p-10 sm:pb-32 md:pb-10 lg:pr-[18em] lg:gap-10 lg:pb-24 xl:mt-10 xl:gap-12 xl:p-12 xl:pb-28 2xl:p-16 2xl:pb-28`}>
          <div className='large-img-con absolute w-42 bottom-3 right-3 aspect-square sm:w-52 sm:bottom-5 sm:right-5 lg:w-[20em] lg:bottom-14 lg:right-10 xl:w-[25em]'>
  <img className='bg-center object-cover large-img w-full h-full' src={largeImgClass} alt="" />
          </div>
@@ -147,7 +149,7 @@ const SkillsSection = () => {
                 <div className='flex gap-2 flex-wrap mt-5 gap-y-3 text-sm sm:gap-x-4 sm:gap-y-5 lg:text-base lg:cursor-pointer 2xl:mt-8 2xl:gap-x-6'>
                  {
                   skills.map(({name, imgIcon, imgLarge}, index) => {
-                    return <div onMouseOver={() => handleChangeBg(imgLarge)} onClick={() => handleChangeBg(imgLarge)} key={index} className={`flex skills items-center gap-2 border border-[#ccc] bg-white w-fit px-4 py-1 rounded-md lg:py-2 lg:px-6 lg:hover:${largeImgClass} 2xl:text-[1.2em] 2xl:py-4 2xl:px-8`}>
+                    return <div onMouseOver={() => handleChangeBg(imgLarge)} onClick={() => handleChangeBg(imgLarge)} key={index} className={`flex skills items-center gap-2 border ${theme === "Light" ? "border-[#ccc]" : "border-[#222]"} ${theme === "Dark" ? "bg-dark" : "bg-white"} w-fit px-4 py-1 rounded-md lg:py-2 lg:px-6 lg:hover:${largeImgClass} 2xl:text-[1.2em] 2xl:py-4 2xl:px-8`}>
                       <img className='w-8' src={imgIcon} alt="" />
                       <p>{name}</p>
                     </div>

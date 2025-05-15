@@ -8,7 +8,7 @@ interface ThemeProviderValues {
 const ComponentContext = createContext<ThemeProviderValues>({ theme: "", toggleTheme: () => {}, highlightClr: "" });
  
 interface ThemeProviderProps {
-    children: ReactNode, highlightClr: string
+    children: ReactNode,
 }
 
 const ThemeContext: React.FC<ThemeProviderProps> = ({children}) => {

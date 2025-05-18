@@ -19,6 +19,9 @@ import { useTheme } from './ThemeContext';
 import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { scroller, Link } from 'react-scroll'
 
+export const handleSocMed = (Link: string) => {
+      window.open(Link, "_blank")
+    }
 
 function UpperNavigation() {
     
@@ -27,9 +30,7 @@ function UpperNavigation() {
     const navbarContainer = React.useRef(null);
     const {theme, toggleTheme, highlightClr } = useTheme();
   
-    const handleSocMed = (Link: string) => {
-      window.open(Link, "_blank")
-    }
+   
 
     React.useEffect(() => {
      

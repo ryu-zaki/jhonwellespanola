@@ -134,7 +134,7 @@ const SkillsSection = () => {
       </div>
       
 
-      <div className={`${theme === "Dark" && "bg-[#222]"} shadow-light overflow-hidden relative flex flex-col gap-7 mt-5 p-5 rounded-xl pb-32 sm:p-10 sm:pb-32 md:pb-10 lg:pr-[18em] lg:gap-10 lg:pb-24 xl:mt-10 xl:gap-12 xl:p-12 xl:pb-28 2xl:p-16 2xl:pb-28`}>
+      <div className={`${theme === "Dark" && "bg-[#222]"} shadow-light overflow-hidden relative flex flex-col gap-7 mt-5 p-5 rounded-xl pb-32 sm:p-10 sm:pb-32 md:pb-10 lg:pr-[18em] lg:gap-10 lg:pb-24 xl:pr-[20em] xl:mt-10 xl:gap-12 xl:p-12 xl:pb-28 2xl:p-16 2xl:pb-28`}>
          <div className='large-img-con absolute w-42 bottom-3 right-3 aspect-square sm:w-52 sm:bottom-5 sm:right-5 lg:w-[20em] lg:bottom-14 lg:right-10 xl:w-[25em]'>
  <img className='bg-center object-cover large-img w-full h-full' src={largeImgClass} alt="" />
          </div>

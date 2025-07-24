@@ -53,16 +53,17 @@ const CreateSkillCategory = ({ category, skills }: SkillCategory) => {
         { name: "ReactJS", imgIcon: reactIcon, imgLarge: reactLarge },
         { name: "TailwindCSS", imgIcon: tailwindIcon, imgLarge: tailwindLarge },
         { name: "Typescript", imgIcon: typescriptIcon, imgLarge: typescriptLarge },
+        
     ]}),
     CreateSkillCategory({category: "Back-end", skills: [
         { name: "NodeJS", imgIcon: nodeIcon, imgLarge: nodeLarge },
         { name: "ExpressJS", imgIcon: expressIcon, imgLarge: expressLarge },
-        /* { name: "EJS", imgIcon: ejsIcon, imgLarge: ejsLarge }, */
-        { name: "MySQL", imgIcon: mysqlIcon, imgLarge: mysqlLarge },
+        
+         { name: "MySQL", imgIcon: mysqlIcon, imgLarge: mysqlLarge },
         { name: "PostgreSQL", imgIcon: postgresIcon, imgLarge: postgresLarge },
         { name: "MongoDB", imgIcon: mongoIcon, imgLarge: mongoLarge },
     ]}),
-    CreateSkillCategory({category: "Database", skills: [
+    CreateSkillCategory({category: "Others", skills: [
         { name: "GIT", imgIcon: gitIcon, imgLarge: gitLarge },
         { name: "Figma", imgIcon: figmaIcon, imgLarge: figmaLarge },
         { name: "EJS", imgIcon: ejsIcon, imgLarge: ejsLarge },

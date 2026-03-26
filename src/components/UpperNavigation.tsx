@@ -159,7 +159,7 @@ const NavigationBtn:React.FC<{ setSidenavVisible: React.Dispatch<React.SetStateA
                 <img src={theme === "Dark" ? darkImg : imgSrc} alt="" />
           </div>
           
-          <p className={`${theme === "Dark" ? "text-white" : "text-dark"} lg:relative transition-all lg:transition-none lg:before:absolute lg:before:transition-all lg:before:duration-200 lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark  origin-left navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1.08em]" : "lg:text-[.9em] 2xl:text-[1.16em]"} lg:cursor-pointer`}>{category}</p>
+          <p className={`${theme === "Dark" ? "text-white" : "text-dark"} lg:relative transition-all lg:transition-none lg:before:absolute lg:before:transition-all lg:before:duration-200 lg:before:-bottom-1 lg:before:w-full lg:before:h-[2px] lg:before:bg-violet-dark  origin-left navbtn ${navFixed ? "lg:text-[.8em] 2xl:text-[1em]" : "lg:text-[.9em] 2xl:text-[1em]"} lg:cursor-pointer`}>{category}</p>
         </div>
     )
 }

@@ -84,7 +84,7 @@ function UpperNavigation() {
     {
       navFixed && (
       <div className={`additionalNav navbar_animate opacity-0 fixed px-2 z-20 text-white top-[3.2em] left-0 right-0 translate-y-0 bg-violet-darker lg:top-[2.6em] xl:top-[3.2em]`}>
-        <div className='flex text-sm py-2 justify-between items-center container mx-auto lg:py-1 2xl:text-[1.6em]'>
+        <div className='flex text-sm py-2 justify-between items-center container mx-auto lg:py-1 2xl:text-[1.4em]'>
            <div className="w-full flex items-center gap-5">
                <div className='flex items-center gap-2 relative group'>
                  <FontAwesomeIcon icon={faLinkedin} />

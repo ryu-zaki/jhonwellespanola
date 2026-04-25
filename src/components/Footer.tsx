@@ -29,7 +29,7 @@ function Footer() {
         </div>
 
         <div className='bg-violet-dark mt-16 text-xs py-3 xs:text-sm xl:text-base 2xl:mt-16 2xl:text-[.95em]'>
-          <p>jhonwellespanola4@gmail.com | All Rights Reserved</p>
+          <p>espanola.jhonwellbscs2023@gmail.com | All Rights Reserved</p>
         </div>
     </footer>
   )

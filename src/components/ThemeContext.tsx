@@ -16,8 +16,19 @@ const ThemeContext: React.FC<ThemeProviderProps> = ({children}) => {
   const [theme, setTheme] = React.useState<"Light" | "Dark">("Light");
 
   const toggleTheme = () => {
-    setTheme(prev => prev === "Light" ? "Dark" : "Light");
+    setTheme(prev => {
+      const newTheme = prev === "Light" ? "Dark" : "Light";
+      localStorage.setItem("theme", newTheme);
+      return newTheme
+    } );
   }
+
+  React.useEffect(() => 
+    {
+      const prevTheme = localStorage.getItem("theme") as "Light" | "Dark";
+      setTheme(prevTheme);
+
+    }, [])
 
   const [highlightClr, setHighlightClr] = React.useState("");
   

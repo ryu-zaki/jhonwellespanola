@@ -93,7 +93,7 @@ function UpperNavigation() {
 
                <div className='flex relative items-center gap-2'>
                  <FontAwesomeIcon icon={faPhone} />
-                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-[.6em]'>09560474507</p>
+                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-[.6em]'>09460474507</p>
                </div>
            </div>
 

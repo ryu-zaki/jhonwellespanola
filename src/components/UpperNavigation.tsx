@@ -16,7 +16,7 @@ import sunActive from '../assets/UpperNav/sun-active.png';
 import sunInactive from '../assets/UpperNav/sun-inactive.png';
 import upperNavigations from '../static data/Navigations';
 import { useTheme } from './ThemeContext';
-import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { scroller, Link } from 'react-scroll'
 
 export const handleSocMed = (Link: string) => {
@@ -100,7 +100,7 @@ function UpperNavigation() {
            <div className='flex gap-4 items-center 2xl:gap-7'>
               <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.facebook.com/jhonwell.espanola")} icon={faFacebook} />
               <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.instagram.com/mqkie_/")} icon={faInstagram} />
-              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.youtube.com/@12-2aespanolajhonwella.6")} icon={faYoutube} />
+              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://github.com/ryu-zaki")} icon={faGithub} />
            </div>
         </div>
         </div>

@@ -99,7 +99,7 @@ function UpperNavigation() {
 
            <div className='flex gap-4 items-center 2xl:gap-7'>
               <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.facebook.com/jhonwell.espanola")} icon={faFacebook} />
-              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.instagram.com/mqkie_/")} icon={faInstagram} />
+              <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://www.instagram.com/jqnwel/")} icon={faInstagram} />
               <FontAwesomeIcon className='cursor-pointer' onClick={() => handleSocMed("https://github.com/ryu-zaki")} icon={faGithub} />
            </div>
         </div>

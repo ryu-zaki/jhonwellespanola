@@ -88,7 +88,7 @@ function UpperNavigation() {
            <div className="w-full flex items-center gap-5">
                <div className='flex items-center gap-2 relative group'>
                  <FontAwesomeIcon icon={faLinkedin} />
-                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-[.6em]'>Jhonwell Espanola</p>
+                 <p className='absolute origin-top-left transition-all scale-0 bg-white text-dark text-sm top-[130%] rounded-lg p-2 whitespace-nowrap group-hover:scale-100 lg:static lg:inset-auto lg:scale-100 lg:bg-transparent lg:text-white lg:text-xs 2xl:text-[.6em]'>Jhonwell Española</p>
                </div>
 
                <div className='flex relative items-center gap-2'>

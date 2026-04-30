@@ -25,6 +25,8 @@ const ThemeContext: React.FC<ThemeProviderProps> = ({children}) => {
 
   React.useEffect(() => 
     {
+      if (!localStorage.getItem("theme")) return;
+      
       const prevTheme = localStorage.getItem("theme") as "Light" | "Dark";
       setTheme(prevTheme);
 

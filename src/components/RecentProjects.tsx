@@ -103,7 +103,7 @@ const ProjectBox:React.FC<{ data: ProjectType, index: number }> = ({ data, index
 
       <h3 className='absolute top-2 left-2 text-white poppins-semibold text-sm'>0{index}</h3>
       <div className='proj_img'>
-      <img className={`w-full h-full object-cover md:group-hover:scale-110 duration-500 transition-all`} src={imgProj} alt="" />
+      <img className={`w-full h-full object-cover md:group-hover:scale-110 duration-500 transition-all mt-5`} src={imgProj} alt="" />
       </div>
       
 

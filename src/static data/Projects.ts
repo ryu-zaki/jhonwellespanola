@@ -1,6 +1,6 @@
 
 import comfoodyBg from '../assets/Projects/comfoody-bg.png';
-import homeverseBg from '../assets/Projects/homeverse-bg.png';
+import ecoSurvivalBg from '../assets/Projects/eco-survival-bg.png';
 import attendeaseBg from '../assets/Projects/attendease-bg.png';
 import balaiMarioBg from '../assets/Projects/balai-mario-bg.png'
 import raztapahanBg from '../assets/Projects/raztapahan-bg.png';
@@ -45,12 +45,12 @@ import pawlarPage6 from '../assets/Projects/Sample Pages/pawlar/6.png';
 
 
 // #region Homeverse Pages
-import homePage1 from '../assets/Projects/Sample Pages/homeverse/1.png';
-import homePage2 from '../assets/Projects/Sample Pages/homeverse/2.png';
-import homePage3 from '../assets/Projects/Sample Pages/homeverse/3.png';
-import homePage4 from '../assets/Projects/Sample Pages/homeverse/4.png';
-import homePage5 from '../assets/Projects/Sample Pages/homeverse/5.png';
-import homePage6 from '../assets/Projects/Sample Pages/homeverse/6.png';
+import eco1 from '../assets/Projects/Sample Pages/eco survival/1.png';
+import eco2 from '../assets/Projects/Sample Pages/eco survival/2.png';
+import eco3 from '../assets/Projects/Sample Pages/eco survival/3.png';
+import eco4 from '../assets/Projects/Sample Pages/eco survival/4.png';
+import eco5 from '../assets/Projects/Sample Pages/eco survival/5.png';
+import eco6 from '../assets/Projects/Sample Pages/eco survival/6.png';
 // #endregion
 
 // #region Weather app Pages
@@ -93,7 +93,7 @@ const Projects: ProjectType[] = [
         title: "AttendEase",
         category: "Employee Management System",   
         description: "An Employee Management System with Payroll Integration, using Visual Basic and the .NET Framework for modern offices and organizations. The proposed system will be developed as a Windows Forms Application and will use SQL Server 2022 for database management.", imgsSample: [attendeasePage1, attendeasePage2, attendeasePage3, attendeasePage4, attendeasePage5, attendeasePage6],
-        source: "https://github.com/ryu-zaki/Entertainment-Web-App"
+        source: "https://github.com/ryu-zaki/AttendEase"
        }),
      CreateProjectInfo({ 
       imgProj: raztapahanBg,
@@ -120,11 +120,11 @@ const Projects: ProjectType[] = [
       source: "https://github.com/ryu-zaki/Balai-Mario"
    }),
      CreateProjectInfo({ 
-        imgProj: homeverseBg,
-        url: "https://homeverse.onrender.com/",
-        title: "Homeverse",
-        category: "Real-Estate Website",description: "A real estate web app that showcases property listings, project details, and investment opportunities to potential buyers and investors. Features include detailed property information, high-quality images, location maps, and inquiry forms to help users make informed decisions.", imgsSample: [homePage1, homePage2, homePage3, homePage4, homePage5, homePage6],
-        source: "https://github.com/ryu-zaki/Homeverse"
+        imgProj: ecoSurvivalBg,
+        url: "https://ryu-zaki.github.io/eco-survival/",
+        title: "Eco-Survival",
+        category: "Game Development",description: "Eco-Survival is an interactive 2D biological simulation where players control an Amoeba navigating a hostile swamp. The core gameplay focuses on metabolism management and genetic mutations (power-ups) to survive evolving predators and a recurring Alpha Hydra boss.", imgsSample: [eco1, eco2, eco3, eco4, eco5, eco6],
+        source: "https://github.com/ryu-zaki/eco-survival"
      }),
 ]
 

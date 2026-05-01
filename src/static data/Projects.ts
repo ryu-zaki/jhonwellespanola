@@ -1,6 +1,5 @@
 
 import comfoodyBg from '../assets/Projects/comfoody-bg.png';
-import entertainmentBg from '../assets/Projects/entertainment-website-bg.png';
 import homeverseBg from '../assets/Projects/homeverse-bg.png';
 import attendeaseBg from '../assets/Projects/attendease-bg.png';
 import balaiMarioBg from '../assets/Projects/balai-mario-bg.png'

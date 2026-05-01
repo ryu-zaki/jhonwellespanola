@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionTitle from './SectionTitle'
-import personalImage from '../assets/Personal Info/personal-img-700.jpg'
+import personalImage from '../assets/Personal Info/personal-img.png'
 import SkillSet from '../static data/SkillSet'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'

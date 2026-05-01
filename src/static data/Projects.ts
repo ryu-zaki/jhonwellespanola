@@ -1,10 +1,10 @@
 
 import comfoodyBg from '../assets/Projects/comfoody-bg.png';
-import entertainmentBg from '../assets/Projects/entertainment-website-bg.png';
-import homeverseBg from '../assets/Projects/homeverse-bg.png';
-import weatherBg from '../assets/Projects/weather-website-bg.png';
+import ecoSurvivalBg from '../assets/Projects/eco-survival-bg.png';
+import attendeaseBg from '../assets/Projects/attendease-bg.png';
 import balaiMarioBg from '../assets/Projects/balai-mario-bg.png'
 import raztapahanBg from '../assets/Projects/raztapahan-bg.png';
+import pawlarBg from '../assets/Projects/pawlar-bg.png';
 
 // #region Comfoody Pages
 import comPage1 from '../assets/Projects/Sample Pages/comfoody/1.png'
@@ -34,31 +34,33 @@ import raztaPage6 from '../assets/Projects/Sample Pages/raztapahan/6.png'
 // #endregion
 
 // #region Entertainment Pages
-import enterPage1 from '../assets/Projects/Sample Pages/entertainment/1.png';
-import enterPage2 from '../assets/Projects/Sample Pages/entertainment/2.png';
-import enterPage3 from '../assets/Projects/Sample Pages/entertainment/3.jpg';
-import enterPage4 from '../assets/Projects/Sample Pages/entertainment/4.jpg';
-import enterPage5 from '../assets/Projects/Sample Pages/entertainment/5.jpg';
-import enterPage6 from '../assets/Projects/Sample Pages/entertainment/6.jpg';
+import pawlarPage1 from '../assets/Projects/Sample Pages/pawlar/1.png';
+import pawlarPage2 from '../assets/Projects/Sample Pages/pawlar/2.png';
+import pawlarPage3 from '../assets/Projects/Sample Pages/pawlar/3.png';
+import pawlarPage4 from '../assets/Projects/Sample Pages/pawlar/4.png';
+import pawlarPage5 from '../assets/Projects/Sample Pages/pawlar/5.png';
+import pawlarPage6 from '../assets/Projects/Sample Pages/pawlar/6.png';
+
 // #endregion
 
 
 // #region Homeverse Pages
-import homePage1 from '../assets/Projects/Sample Pages/homeverse/1.png';
-import homePage2 from '../assets/Projects/Sample Pages/homeverse/2.png';
-import homePage3 from '../assets/Projects/Sample Pages/homeverse/3.png';
-import homePage4 from '../assets/Projects/Sample Pages/homeverse/4.png';
-import homePage5 from '../assets/Projects/Sample Pages/homeverse/5.png';
-import homePage6 from '../assets/Projects/Sample Pages/homeverse/6.png';
+import eco1 from '../assets/Projects/Sample Pages/eco survival/1.png';
+import eco2 from '../assets/Projects/Sample Pages/eco survival/2.png';
+import eco3 from '../assets/Projects/Sample Pages/eco survival/3.png';
+import eco4 from '../assets/Projects/Sample Pages/eco survival/4.png';
+import eco5 from '../assets/Projects/Sample Pages/eco survival/5.png';
+import eco6 from '../assets/Projects/Sample Pages/eco survival/6.png';
 // #endregion
 
 // #region Weather app Pages
-import weatherPage1 from '../assets/Projects/Sample Pages/weather app/1.png';
-import weatherPage2 from '../assets/Projects/Sample Pages/weather app/2.png';
-import weatherPage3 from '../assets/Projects/Sample Pages/weather app/3.png';
-import weatherPage4 from '../assets/Projects/Sample Pages/weather app/4.png';
-import weatherPage5 from '../assets/Projects/Sample Pages/weather app/5.png';
-import weatherPage6 from '../assets/Projects/Sample Pages/weather app/6.png';
+import attendeasePage1 from '../assets/Projects/Sample Pages/attendease/1.png';
+import attendeasePage2 from '../assets/Projects/Sample Pages/attendease/2.png';
+import attendeasePage3 from '../assets/Projects/Sample Pages/attendease/3.png';
+import attendeasePage4 from '../assets/Projects/Sample Pages/attendease/4.png';
+import attendeasePage5 from '../assets/Projects/Sample Pages/attendease/5.png';
+import attendeasePage6 from '../assets/Projects/Sample Pages/attendease/6.png';
+
 // #endregion
 
 export interface ProjectType {
@@ -76,22 +78,23 @@ const CreateProjectInfo = ({ imgProj, url, title, category, description, imgsSam
 }
 
 const Projects: ProjectType[] = [
-   CreateProjectInfo({ 
-      imgProj: balaiMarioBg,
-      url: "https://balai-mario.onrender.com/",
-      title: "Balai Mario",
-      category: "Ecommerce Website",
-      description: "A web app that enables users to order or reserve their favorite food at Balai Mario with an extensive features such as user accounts handling and online payment", imgsSample: [balaiPage1,balaiPage2, balaiPage3, balaiPage4, balaiPage5, balaiPage6],
-      source: "https://github.com/ryu-zaki/Balai-Mario"
-   }),
     CreateProjectInfo({ 
-        imgProj: comfoodyBg,
-        url: "https://comfoody.onrender.com/",
-        title: "Comfoody",
-        category: "Ecommerce Website",
-        description: "An E-Commerce website that can handle multiple requests and orders of users. Admin can alter the items and monitor every user and order in this online shop. Visit and Explore the stunning desigs abd efficient functionalities!", imgsSample: [comPage1, comPage2, comPage3, comPage4, comPage5, comPage6]
-        ,source: "https://github.com/ryu-zaki/Comfoody"
-      }),
+      imgProj: pawlarBg,
+      url: "https://pawlar-website.onrender.com/",
+      title: "Pawlar",
+      category: "Iot-Based Project",
+      description: "An integrated IoT system for smart pet management and wellness where owners can enhance pet care through a smart collar that enables real-time GPS tracking, secure pet door access, and an intelligent feeder that generates personalized schedules based on the pet's behavioral data.", 
+      imgsSample: [pawlarPage1,pawlarPage2, pawlarPage3, pawlarPage4, pawlarPage5, pawlarPage6],
+      source: "https://github.com/ryu-zaki/Pawlar"
+   }),
+      CreateProjectInfo({ 
+        imgProj: attendeaseBg,
+        url: "https://entertainment-web-app-5k9k.onrender.com/",
+        title: "AttendEase",
+        category: "Employee Management System",   
+        description: "An Employee Management System with Payroll Integration, using Visual Basic and the .NET Framework for modern offices and organizations. The proposed system will be developed as a Windows Forms Application and will use SQL Server 2022 for database management.", imgsSample: [attendeasePage1, attendeasePage2, attendeasePage3, attendeasePage4, attendeasePage5, attendeasePage6],
+        source: "https://github.com/ryu-zaki/AttendEase"
+       }),
      CreateProjectInfo({ 
       imgProj: raztapahanBg,
       url: "https://raztapahan-static.onrender.com/",
@@ -101,28 +104,28 @@ const Projects: ProjectType[] = [
       source: "https://github.com/ryu-zaki/raztapahan-static.git"
    }),
      CreateProjectInfo({ 
-        imgProj: entertainmentBg,
-        url: "https://entertainment-web-app-5k9k.onrender.com/",
-        title: "Entertainify ",
-        category: "Entertainment Web App",   
-        description: "A web app that lets users explore for the latest movies, shows, and events with ease. Packed with essential features including user account management, and an optimized data structure for a smooth entertainment experience.", imgsSample: [enterPage1, enterPage2, enterPage3, enterPage4, enterPage5, enterPage6],
-        source: "https://github.com/ryu-zaki/Entertainment-Web-App"
-       }),
-     CreateProjectInfo({ 
-        imgProj: homeverseBg,
-        url: "https://homeverse.onrender.com/",
-        title: "Homeverse",
-        category: "Real-Estate Website",description: "A real estate web app that showcases property listings, project details, and investment opportunities to potential buyers and investors. Features include detailed property information, high-quality images, location maps, and inquiry forms to help users make informed decisions.", imgsSample: [homePage1, homePage2, homePage3, homePage4, homePage5, homePage6],
-        source: "https://github.com/ryu-zaki/Homeverse"
-     }),
-     CreateProjectInfo({ 
-        imgProj: weatherBg,
-        url: "https://weather-web-app-sm3m.onrender.com/",
-        title: "Weathery",
-        category: "Weather Web App", description: "A dynamic weather web app that provides real-time updates on temperature, wind speed, humidity, and atmospheric pressure. Includes a visual statistical graph, cloud status tracking, and an interactive calendar to help users monitor weather patterns over time with clarity and precision.", imgsSample: [weatherPage1, weatherPage2, weatherPage3, weatherPage4, weatherPage5, weatherPage6],
-        source: "https://github.com/ryu-zaki/weather-web-app"
-       
+        imgProj: comfoodyBg,
+        url: "https://comfoody.onrender.com/",
+        title: "Comfoody",
+        category: "Ecommerce Website",
+        description: "An E-Commerce website that can handle multiple requests and orders of users. Admin can alter the items and monitor every user and order in this online shop. Visit and Explore the stunning desigs abd efficient functionalities!", imgsSample: [comPage1, comPage2, comPage3, comPage4, comPage5, comPage6]
+        ,source: "https://github.com/ryu-zaki/Comfoody"
       }),
+       CreateProjectInfo({ 
+      imgProj: balaiMarioBg,
+      url: "https://balai-mario.onrender.com/",
+      title: "Balai Mario",
+      category: "Ecommerce Website",
+      description: "A web app that enables users to order or reserve their favorite food at Balai Mario with an extensive features such as user accounts handling and online payment", imgsSample: [balaiPage1,balaiPage2, balaiPage3, balaiPage4, balaiPage5, balaiPage6],
+      source: "https://github.com/ryu-zaki/Balai-Mario"
+   }),
+     CreateProjectInfo({ 
+        imgProj: ecoSurvivalBg,
+        url: "https://ryu-zaki.github.io/eco-survival/",
+        title: "Eco-Survival",
+        category: "Game Development",description: "Eco-Survival is an interactive 2D biological simulation where players control an Amoeba navigating a hostile swamp. The core gameplay focuses on metabolism management and genetic mutations (power-ups) to survive evolving predators and a recurring Alpha Hydra boss.", imgsSample: [eco1, eco2, eco3, eco4, eco5, eco6],
+        source: "https://github.com/ryu-zaki/eco-survival"
+     }),
 ]
 
 

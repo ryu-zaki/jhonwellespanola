@@ -59,6 +59,8 @@ import attendeasePage2 from '../assets/Projects/Sample Pages/attendease/2.png';
 import attendeasePage3 from '../assets/Projects/Sample Pages/attendease/3.png';
 import attendeasePage4 from '../assets/Projects/Sample Pages/attendease/4.png';
 import attendeasePage5 from '../assets/Projects/Sample Pages/attendease/5.png';
+import attendeasePage6 from '../assets/Projects/Sample Pages/attendease/6.png';
+
 // #endregion
 
 export interface ProjectType {
@@ -90,7 +92,7 @@ const Projects: ProjectType[] = [
         url: "https://entertainment-web-app-5k9k.onrender.com/",
         title: "AttendEase",
         category: "Employee Management System",   
-        description: "An Employee Management System with Payroll Integration, using Visual Basic and the .NET Framework for modern offices and organizations. The proposed system will be developed as a Windows Forms Application and will use SQL Server 2022 for database management.", imgsSample: [attendeasePage3, attendeasePage2, attendeasePage3, attendeasePage4, attendeasePage5],
+        description: "An Employee Management System with Payroll Integration, using Visual Basic and the .NET Framework for modern offices and organizations. The proposed system will be developed as a Windows Forms Application and will use SQL Server 2022 for database management.", imgsSample: [attendeasePage1, attendeasePage2, attendeasePage3, attendeasePage4, attendeasePage5, attendeasePage6],
         source: "https://github.com/ryu-zaki/Entertainment-Web-App"
        }),
      CreateProjectInfo({ 

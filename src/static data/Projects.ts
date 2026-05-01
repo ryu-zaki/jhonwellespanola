@@ -35,12 +35,13 @@ import raztaPage6 from '../assets/Projects/Sample Pages/raztapahan/6.png'
 // #endregion
 
 // #region Entertainment Pages
-import enterPage1 from '../assets/Projects/Sample Pages/entertainment/1.png';
-import enterPage2 from '../assets/Projects/Sample Pages/entertainment/2.png';
-import enterPage3 from '../assets/Projects/Sample Pages/entertainment/3.jpg';
-import enterPage4 from '../assets/Projects/Sample Pages/entertainment/4.jpg';
-import enterPage5 from '../assets/Projects/Sample Pages/entertainment/5.jpg';
-import enterPage6 from '../assets/Projects/Sample Pages/entertainment/6.jpg';
+import pawlarPage1 from '../assets/Projects/Sample Pages/pawlar/1.png';
+import pawlarPage2 from '../assets/Projects/Sample Pages/pawlar/2.png';
+import pawlarPage3 from '../assets/Projects/Sample Pages/pawlar/3.png';
+import pawlarPage4 from '../assets/Projects/Sample Pages/pawlar/4.png';
+import pawlarPage5 from '../assets/Projects/Sample Pages/pawlar/5.png';
+import pawlarPage6 from '../assets/Projects/Sample Pages/pawlar/6.png';
+
 // #endregion
 
 
@@ -84,7 +85,7 @@ const Projects: ProjectType[] = [
       title: "Pawlar",
       category: "Iot-Based Project",
       description: "An integrated IoT system for smart pet management and wellness where owners can enhance pet care through a smart collar that enables real-time GPS tracking, secure pet door access, and an intelligent feeder that generates personalized schedules based on the pet's behavioral data.", 
-      imgsSample: [balaiPage1,balaiPage2, balaiPage3, balaiPage4, balaiPage5, balaiPage6],
+      imgsSample: [pawlarPage1,pawlarPage2, pawlarPage3, pawlarPage4, pawlarPage5, pawlarPage6],
       source: "https://github.com/ryu-zaki/Pawlar"
    }),
       CreateProjectInfo({ 

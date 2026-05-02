@@ -49,7 +49,7 @@ function HeroSection() {
              <img className='w-6 2xl:w-8' src={react} alt="" />
           </div>
 
-          <p className={`${highlightClr} poppins-semibold 2xl:text-xl`}>+10 skills</p>
+          <p className={`${highlightClr} poppins-semibold 2xl:text-xl`}>+20 skills</p>
         </div>
 
         <p className='text-sm leading-7 hero-details xs:text-base xl:mt-5 xl:text-lg xl:leading-8 2xl:text-[1.4em] 2xl:leading-[1.8em]'>I specialize in building clean, responsive, and <span className={`${highlightClr} poppins-semibold`}>scalable web applications</span>, both on the frontend and backend. I’m always expanding my skill set, currently diving into advanced JavaScript frameworks to enhance my development workflow. Let’s collaborate and create something amazing together!</p>
